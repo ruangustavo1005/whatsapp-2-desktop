@@ -7,6 +7,8 @@ import java.util.List;
  */
 abstract public class Conversa {
     
+    private int qtdMensagensNaoLidas;
+    
     private List<Mensagem> mensagens;
     
     public abstract String getTitulo();
@@ -19,6 +21,14 @@ abstract public class Conversa {
     
     public List<Mensagem> getMensagens() {
         return this.mensagens;
+    }
+
+    public int getQtdMensagensNaoLidas() {
+        return qtdMensagensNaoLidas;
+    }
+
+    public void setQtdMensagensNaoLidas(int qtdMensagensNaoLidas) {
+        this.qtdMensagensNaoLidas = qtdMensagensNaoLidas;
     }
     
 }

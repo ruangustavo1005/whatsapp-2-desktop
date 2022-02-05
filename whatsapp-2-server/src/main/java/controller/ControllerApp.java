@@ -4,15 +4,15 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import model.Server;
+import controller.ControllerServer;
 import view.TelaServer;
 
 public class ControllerApp {
     
-    private Server server;
+    private ControllerServer server;
 
     public ControllerApp() {
-        this.server = new Server();
+        this.server = new ControllerServer();
     }
     
     public void showView() {

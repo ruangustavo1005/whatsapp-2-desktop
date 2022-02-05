@@ -1,6 +1,6 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * @author Leonardo e Ruan
@@ -9,12 +9,12 @@ public class Dao {
     
     private static Dao instance;
     
-    protected ArrayList<Usuario> usuarios;
-    protected ArrayList<Conversa> conversas;
+    protected HashMap<String, Usuario> usuarios;
+    protected HashMap<String, Conversa> conversas;
     
     private Dao() {
-        this.usuarios = new ArrayList<>();
-        this.conversas = new ArrayList<>();
+        this.usuarios = new HashMap<>();
+        this.conversas = new HashMap<>();
     }
     
     public static Dao getInstance() {
@@ -24,11 +24,11 @@ public class Dao {
         return instance;
     }
     
-    public ArrayList<Usuario> getUsuarios() {
+    public HashMap<String, Usuario> getUsuarios() {
         return this.usuarios;
     }
     
-    public ArrayList<Conversa> getConversas() {
+    public HashMap<String, Conversa> getConversas() {
         return this.conversas;
     }
     

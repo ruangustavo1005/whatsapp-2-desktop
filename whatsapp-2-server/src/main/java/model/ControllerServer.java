@@ -1,5 +1,6 @@
 package model;
 
+import controller.ControllerMessageBase;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -7,9 +8,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import messages.MessageBase;
 import view.TelaServer;
 
-public class Server extends Thread  {
+public class ControllerServer extends Thread  {
     
     private ServerSocket server;
     private InputStream input;
@@ -34,13 +36,14 @@ public class Server extends Thread  {
                 if(dadosLidos >= 0)  {
                     String dadosStr = new String(dadosBrutos, 0, dadosLidos);
                     TelaServer.getInstance().addLog(dadosStr);
-                    String[] infos = dadosStr.split(";");
-                    //gson
+                    MessageBase mensagem = FactoryClientMessage.getClientMessage(dadosStr);
+                    ControllerMessageBase controller = FactoryControllerClientMessage.getControllerClientMessage(mensagem);
+                    controller.execute();
                 }
             } catch (IOException ex) {
-                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ControllerServer.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
-                Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ControllerServer.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
