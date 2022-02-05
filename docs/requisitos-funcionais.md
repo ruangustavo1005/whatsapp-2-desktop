@@ -26,8 +26,8 @@
 
 * O sistema deve usar Sockets para fazer a comunicação entre cliente e servidor;
 * O sistema deve usar Threads para fazer os processamentos após receber uma mensagem do cliente/servidor;
-* O sistema deve fechar as conexões dos Sockets após enviar uma mensagem.
-* O tipo do conteúdo das mensagens é JSON
+* O sistema deve fechar as conexões dos Sockets após enviar uma mensagem;
+* O tipo do conteúdo das mensagens transitadas entre clienter e servidor deve ser em formato JSON.
 
 ## Mensagens trocadas
 
