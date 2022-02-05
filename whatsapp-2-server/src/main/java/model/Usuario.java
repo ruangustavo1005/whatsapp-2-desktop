@@ -11,6 +11,14 @@ public class Usuario {
     private String ip;
     private int porta;
 
+    public Usuario(String username, String senha, String nome, String ip, int porta) {
+        this.username = username;
+        this.senha = senha;
+        this.nome = nome;
+        this.ip = ip;
+        this.porta = porta;
+    }
+    
     public String getUsername() {
         return username;
     }
