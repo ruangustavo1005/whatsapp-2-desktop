@@ -20,14 +20,15 @@
 * RN03: As conversas de um usuário podem ser conversas privadas ou conversas em grupo;
 * RN04: As conversas privadas contém apenas dois usuários;
 * RN05: As conversar em grupo podem conter vários usuários;
-* RN06: Os usuários de um grupo de conversa são podem ser alterados.
+* RN06: Os usuários de um grupo de conversa são podem ser alterados;
+* RN07: O nome de usuário é único para cada usuário cadastrado no sistema.
 
 ### Requisitos Não Funcionais
 
 * O sistema deve usar Sockets para fazer a comunicação entre cliente e servidor;
 * O sistema deve usar Threads para fazer os processamentos após receber uma mensagem do cliente/servidor;
-* O sistema deve fechar as conexões dos Sockets após enviar uma mensagem.
-* O tipo do conteúdo das mensagens é JSON
+* O sistema deve fechar as conexões dos Sockets após enviar uma mensagem;
+* O tipo do conteúdo das mensagens transitadas entre clienter e servidor deve ser em formato JSON.
 
 ## Mensagens trocadas
 
