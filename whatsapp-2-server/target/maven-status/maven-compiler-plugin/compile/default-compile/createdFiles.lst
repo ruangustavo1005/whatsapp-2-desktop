@@ -1,9 +1,8 @@
-view\TelaServer.class
+messages\MessageLoginFinal.class
+messages\MessageBase.class
 App.class
 model\ConversaGrupo.class
-controller\ControllerApp.class
 model\ConversaPrivada.class
-model\Server.class
 model\Usuario.class
 model\Mensagem.class
 model\Conversa.class

@@ -37,9 +37,8 @@ public class ControllerServer extends Thread  {
                     String dadosStr = new String(dadosBrutos, 0, dadosLidos);
                     TelaServer.getInstance().addLog(dadosStr);
                     MessageBase mensagem = FactoryClientMessage.getClientMessage(dadosStr);
-                    ControllerMessageBase controller = FactoryControllerClientMessage.getControllerClientMessage(mensagem);
-                    String retorno = controller.execute();
-                    out.write(retorno.getBytes());
+                    ControllerMessageBase controller = FactoryControllerClientMessage.getControllerClientMessage(mensagem, conn);
+                    controller.execute();
                     conn.close();
                 }
             } catch (IOException ex) {
