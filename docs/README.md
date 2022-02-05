@@ -20,7 +20,8 @@
 * RN03: As conversas de um usuário podem ser conversas privadas ou conversas em grupo;
 * RN04: As conversas privadas contém apenas dois usuários;
 * RN05: As conversar em grupo podem conter vários usuários;
-* RN06: Os usuários de um grupo de conversa são podem ser alterados.
+* RN06: Os usuários de um grupo de conversa são podem ser alterados;
+* RN07: O nome de usuário é único para cada usuário cadastrado no sistema.
 
 ### Requisitos Não Funcionais
 
