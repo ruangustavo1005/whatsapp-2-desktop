@@ -1,5 +1,11 @@
 # WhatsApp 2 (Desktop)
 
+## Padrões de Projeto
+
+* Singleton
+* MVC
+* Strategy
+
 ## Requisitos
 
 ### Requisitos Funcionais
