@@ -58,5 +58,10 @@ public class Usuario {
     public void setPorta(int porta) {
         this.porta = porta;
     }
+
+    @Override
+    public String toString() {
+        return this.username + ";" + this.nome;
+    }
     
 }
