@@ -28,7 +28,7 @@ public class ControllerServer extends Thread  {
         while (true) {            
             TelaServer.getInstance().addLog("Aguardando conexão");
             try(Socket conn = server.accept();){
-                TelaServer.getInstance().addLog("Conectado com: " + conn.getInetAddress().getHostAddress());
+                TelaServer.getInstance().addLog("Conectado com: " + conn.getInetAddress().getHostAddress() + ":" + conn.getLocalPort());
                 this.out = conn.getOutputStream();
                 this.input = conn.getInputStream();
                 byte[] dadosBrutos = new byte[1024];

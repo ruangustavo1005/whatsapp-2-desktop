@@ -7,6 +7,8 @@ import java.util.List;
  */
 abstract public class Conversa {
     
+    private String id;
+    
     private int qtdMensagensNaoLidas;
     
     private List<Mensagem> mensagens;
@@ -23,12 +25,25 @@ abstract public class Conversa {
         return this.mensagens;
     }
 
+    public String getId() {
+        return id;
+    }
+    
     public int getQtdMensagensNaoLidas() {
         return qtdMensagensNaoLidas;
     }
 
     public void setQtdMensagensNaoLidas(int qtdMensagensNaoLidas) {
         this.qtdMensagensNaoLidas = qtdMensagensNaoLidas;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return this.id + ";" + this.getTitulo();
     }
     
 }
