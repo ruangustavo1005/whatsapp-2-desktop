@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,10 +9,14 @@ import java.util.List;
 abstract public class Conversa {
     
     private String id;
-    
     private int qtdMensagensNaoLidas;
-    
     private List<Mensagem> mensagens;
+
+    public Conversa(String id, int qtdMensagensNaoLidas) {
+        this.id = id;
+        this.qtdMensagensNaoLidas = qtdMensagensNaoLidas;
+        this.mensagens = new ArrayList<>();
+    }
     
     public abstract String getTitulo();
     

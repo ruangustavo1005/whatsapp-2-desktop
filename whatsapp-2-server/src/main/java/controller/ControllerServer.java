@@ -27,7 +27,8 @@ public class ControllerServer extends Thread  {
     public void run() {
         while (true) {            
             TelaServer.getInstance().addLog("Aguardando conexão");
-            try(Socket conn = server.accept();){
+            try{
+                Socket conn = server.accept();
                 TelaServer.getInstance().addLog("Conectado com: " + conn.getInetAddress().getHostAddress() + ":" + conn.getLocalPort());
                 this.out = conn.getOutputStream();
                 this.input = conn.getInputStream();
@@ -39,8 +40,8 @@ public class ControllerServer extends Thread  {
                     MessageBase mensagem = FactoryClientMessage.getClientMessage(dadosStr);
                     ControllerMessageBase controller = FactoryControllerClientMessage.getControllerClientMessage(mensagem, conn);
                     controller.execute();
-                    conn.close();
                 }
+                conn.close();
             } catch (IOException ex) {
                 Logger.getLogger(ControllerServer.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
