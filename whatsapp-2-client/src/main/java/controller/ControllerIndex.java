@@ -3,8 +3,6 @@ package controller;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
@@ -39,13 +37,13 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
 
     @Override
     public void abreTela() {
-        if (this.controllerListenNewMessages == null) {
-            try {
+        try {
+            if (this.controllerListenNewMessages == null) {
                 this.controllerListenNewMessages = new ControllerListenNewMessages(this.getUsuarioLogado().getPorta());
-                new Thread(this.controllerListenNewMessages).start();
-            } catch (IOException ex) {
-                JOptionPane.showMessageDialog(null, "Não foi possível iniciar o notificador de mensagens novas: ".concat(ex.getMessage()), "Erro", JOptionPane.ERROR_MESSAGE);
+                this.controllerListenNewMessages.start();
             }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível iniciar o notificador de mensagens novas: ".concat(ex.getMessage()), "Erro", JOptionPane.ERROR_MESSAGE);
         }
         
         this.getView().getTableModel().clear();
@@ -71,8 +69,7 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
     private void addActionListenerLogout(ViewIndex view) {
         view.getBtnLogout().addActionListener((e) -> {
             this.setUsuarioLogado(null);
-            this.controllerListenNewMessages.stop();
-            this.controllerListenNewMessages = null;
+            this.controllerListenNewMessages.interromper();
             new ControllerLoginInicial().abreTela();
             this.getView().dispose();
         });

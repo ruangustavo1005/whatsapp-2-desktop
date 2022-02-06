@@ -12,20 +12,23 @@ import utils.FactoryReceiveMessage;
 /**
  * @author Leonardo & Ruan
  */
-public class ControllerListenNewMessages implements Runnable {
+public class ControllerListenNewMessages extends Thread {
 
-    private boolean emExecucao = true;
     private int port;
     private ServerSocket serverSocket;
 
     public ControllerListenNewMessages(int port) throws IOException {
+        this.setPort(port);
+    }
+
+    public void setPort(int port) throws IOException {
         this.port = port;
         this.serverSocket = new ServerSocket(this.port);
     }
     
     @Override
     public void run() {
-        while (this.emExecucao) {
+        while (!Thread.interrupted()) {
             try {
                 try (Socket socket = this.serverSocket.accept()) {
                     byte[] dadosBrutos = new byte[1024];
@@ -49,8 +52,8 @@ public class ControllerListenNewMessages implements Runnable {
         }
     }
 
-    public void stop() {
-        this.emExecucao = false;
+    public void interromper() {
+        currentThread().interrupt();
     }
     
 }
