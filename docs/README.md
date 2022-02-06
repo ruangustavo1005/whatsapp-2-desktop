@@ -17,12 +17,13 @@
 * RF05: O sistema deve permitir que o usuário logado veja o histórico de mensagens de determinada conversa;
 * RF06: O sistema deve permitir que o usuário envie mensagens em uma conversa;
 * RF07: O sistema deve permitir que o usuário faça logout;
-* RF08: O sistema deve atualizar as mensagens de uma conversa aberta, caso outro usuário da mesma conversa envie uma mensagem.
+* RF08: O sistema deve atualizar as mensagens de uma conversa aberta, caso outro usuário da mesma conversa envie uma mensagem;
+* RF09: O sistema deve permitir que o usuário crie novas conversas privadas ou com em grupo.
 
 ### Regras de Negócio
 
 * RN01: Os dados de login são usuário (identificador único do usuário) e senha;
-* RN02: Os dados de cadastro de um novo usuário são: nome completo, usuário e senha;
+* RN02: Os dados de cadastro de um novo usuário são: nome completo, usuário, senha e porta para conexão via Socket;
 * RN03: As conversas de um usuário podem ser conversas privadas ou conversas em grupo;
 * RN04: As conversas privadas contém apenas dois usuários;
 * RN05: As conversar em grupo podem conter vários usuários;
@@ -34,7 +35,7 @@
 * O sistema deve usar Sockets para fazer a comunicação entre cliente e servidor;
 * O sistema deve usar Threads para fazer os processamentos após receber uma mensagem do cliente/servidor;
 * O sistema deve fechar as conexões dos Sockets após enviar uma mensagem;
-* O conteúdo das mensagens transitadas entre cliente e servidor deve ser em formato de texto, com informações separadas por ";".
+* O conteúdo das mensagens transitadas entre cliente e servidor deve ser em formato de texto, com informações separadas por ";", seguindo a regra de que a primeira informação da mensagem é um identificador da operação a ser feita.
 
 ## Mensagens trocadas
 
