@@ -136,7 +136,7 @@ public class ControllerConversa extends ControllerBase<ViewConversa>{
                 String response = new String(dadosBrutos, 0, inputStream.read(dadosBrutos));
                 
                 if (!response.equals("0")) {
-                    String[] responseLines = response.split("\n");
+                    String[] responseLines = response.split(";\n");
                     
                     for (String line : responseLines) {
                         String[] linePieces = line.split(";");
