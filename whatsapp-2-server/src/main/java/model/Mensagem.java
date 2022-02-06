@@ -8,20 +8,16 @@ import utils.DateUtils;
  */
 public class Mensagem {
     
-    private String id;
-    
     private Usuario usuario;
     private String mensagem;
     private Date dataHora;
 
-    public String getId() {
-        return id;
+    public Mensagem(Usuario usuario, String mensagem, Date dataHora) {
+        this.usuario = usuario;
+        this.mensagem = mensagem;
+        this.dataHora = dataHora;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-    
     public Usuario getUsuario() {
         return usuario;
     }
@@ -48,7 +44,7 @@ public class Mensagem {
 
     @Override
     public String toString() {
-        return this.id + ";"  + this.mensagem + ";" + DateUtils.dateToString(this.dataHora);
+        return this.usuario.getUsername() + ";" + this.mensagem + ";" + DateUtils.dateToString(this.dataHora);
     }
     
 }

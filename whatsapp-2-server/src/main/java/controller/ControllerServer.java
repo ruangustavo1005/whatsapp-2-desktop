@@ -27,7 +27,7 @@ public class ControllerServer extends Thread  {
     public void run() {
         while (true) {            
             TelaServer.getInstance().addLog("Aguardando conexão");
-            try{
+            try {
                 try (Socket conn = server.accept()) {
                     TelaServer.getInstance().addLog("Conectado com: " + conn.getInetAddress().getHostAddress() + ":" + conn.getLocalPort());
                     this.out = conn.getOutputStream();
