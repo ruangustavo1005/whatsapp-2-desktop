@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import messages.MessageGetConversas;
@@ -20,15 +19,14 @@ public class ControllerMessageGetConversas extends ControllerMessageBase<Message
             Dao dao = Dao.getInstance();
             Usuario usuario = dao.getUsuarios().get(this.getMessageBase().getUsername());
             if(usuario != null) {
-                HashMap<String, Conversa> daoConversas = dao.getConversas();
                 String retorno = "";
-                daoConversas.forEach((key, value) -> {
-                    for(Usuario user : value.getUsuariosNotificar()) {
+                for(Conversa conversa : dao.getConversas().values()) {
+                    for(Usuario user : conversa.getUsuariosNotificar()) {
                         if(user.getUsername().equals(usuario.getUsername())) {
-                            retorno.concat(value.toString() + "\n");
+                            retorno += (conversa.toString() + "\n");
                         }
                     }
-                });
+                }
                 this.write(retorno);
             } else {
                 this.write("");

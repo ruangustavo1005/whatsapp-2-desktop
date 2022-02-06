@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Dao;
 import model.MessageGetUsuarios;
+import model.Usuario;
 
 /**
  * @author Leonardo e Ruan
@@ -13,11 +14,11 @@ public class ControllerMessageGetUsuarios extends ControllerMessageBase<MessageG
 
     @Override
     public void execute() {
-        String retorno = "";
-        Dao.getInstance().getUsuarios().forEach((key, value) -> {
-            retorno.concat(value.toString() + "\n");
-        });
         try {
+            String retorno = "";
+            for (Usuario usuario : Dao.getInstance().getUsuarios().values()) {
+                retorno += usuario.toString() + "\n";
+            }
             this.write(retorno);
         } catch (IOException ex) {
             Logger.getLogger(ControllerMessageGetUsuarios.class.getName()).log(Level.SEVERE, null, ex);
