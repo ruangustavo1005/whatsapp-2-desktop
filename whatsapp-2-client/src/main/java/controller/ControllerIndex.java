@@ -26,7 +26,7 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
     
     @Override
     protected ViewIndex getInstanceView() {
-        return new ViewIndex(new ArrayList<>());
+        return new ViewIndex(this.getConversas());
     }
 
     public static synchronized ControllerIndex getInstance() {
@@ -38,7 +38,32 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
 
     @Override
     protected void addActionListeners(ViewIndex view) {
-        
+        this.addActionListenerLogout(view);
+        this.addActionListenerNewConversaPrivada(view);
+        this.addActionListenerNewConversaGrupo(view);
+    }
+    
+    private void addActionListenerLogout(ViewIndex view) {
+        view.getBtnLogout().addActionListener((e) -> {
+            this.setUsuarioLogado(null);
+            new ControllerLoginInicial().abreTela();
+            this.getView().setVisible(false);
+        });
+    }
+    
+    
+    private void addActionListenerNewConversaPrivada(ViewIndex view) {
+        view.getBtnNewConversaPrivada().addActionListener((e) -> {
+            new ControllerCadastroConversaPrivada().abreTela();
+        });
+    }
+    
+    
+    private void addActionListenerNewConversaGrupo(ViewIndex view) {
+        view.getBtnNewConversaGrupo().addActionListener((e) -> {
+            new ControllerCadastroConversaGrupo().abreTela();
+            this.getView().setVisible(false);
+        });
     }
     
     private ArrayList<Conversa> getConversas() {

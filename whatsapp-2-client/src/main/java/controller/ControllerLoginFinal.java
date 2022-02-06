@@ -35,7 +35,7 @@ public class ControllerLoginFinal extends ControllerBase<ViewLoginFinal> {
 
     private void addActionListenerVoltar(ViewLoginFinal view) {
         view.getBtnVoltar().addActionListener((e) -> {
-            (new ControllerLoginInicial(this.usuario.getUsername())).abreTela();
+            new ControllerLoginInicial(this.usuario.getUsername()).abreTela();
             this.getView().setVisible(false);
         });
     }
@@ -71,7 +71,8 @@ public class ControllerLoginFinal extends ControllerBase<ViewLoginFinal> {
                 retorno = responsePieces[0].equals("1");
                 
                 if (retorno) {
-                    usuario.setNome(responsePieces[1]);
+                    usuario.setNome(responsePieces[1])
+                            .setPorta(Integer.valueOf(responsePieces[2]));
                 }
             }
         }

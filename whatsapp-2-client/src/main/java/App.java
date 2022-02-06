@@ -6,7 +6,7 @@ import controller.ControllerLoginInicial;
 public class App {
 
     public static void main(String[] args) {
-        (new ControllerLoginInicial()).abreTela();
+        new ControllerLoginInicial().abreTela();
     }
     
 }

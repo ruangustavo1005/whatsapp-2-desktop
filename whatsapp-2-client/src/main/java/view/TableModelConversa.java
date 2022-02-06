@@ -24,6 +24,12 @@ public class TableModelConversa extends AbstractTableModel {
         return conversas;
     }
 
+    public void addConversa(Conversa conversa) {
+        this.getConversas().add(conversa);
+        int i = this.getConversas().indexOf(conversa);
+        this.fireTableRowsInserted(i, i);
+    }
+    
     public void updateConversa(Conversa conversa) {
         int index = IntStream.range(0, this.getRowCount())
                 .filter(i -> this.getConversas().get(i).getId().equals(conversa.getId()))

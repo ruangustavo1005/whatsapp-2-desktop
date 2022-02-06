@@ -8,6 +8,8 @@ package view;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import model.Usuario;
 
 /**
@@ -109,7 +111,7 @@ public class ViewCadastroConversaGrupo extends ViewBase {
                     .addComponent(btnRemover))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnIniciarConversa)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -118,12 +120,32 @@ public class ViewCadastroConversaGrupo extends ViewBase {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    public JButton getBtnAdicionar() {
+        return btnAdicionar;
+    }
+
     public JButton getBtnIniciarConversa() {
         return btnIniciarConversa;
     }
 
+    public JButton getBtnRemover() {
+        return btnRemover;
+    }
+
     public JComboBox<Usuario> getListUsuarios() {
         return listUsuarios;
+    }
+
+    public JTable getTableUsuarios() {
+        return tableUsuarios;
+    }
+
+    public JTextField getTxtTitulo() {
+        return txtTitulo;
+    }
+
+    public TableModelUsuarioConversaGrupo getTableModel() {
+        return tableModel;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

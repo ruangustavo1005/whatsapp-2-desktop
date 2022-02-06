@@ -15,7 +15,6 @@ public class TableModelUsuarioConversaGrupo extends AbstractTableModel {
         this.usuarios = new ArrayList<>();
     }
     
-    
     public TableModelUsuarioConversaGrupo(ArrayList<Usuario> usuarios) {
         this.usuarios = usuarios;
     }
@@ -26,6 +25,18 @@ public class TableModelUsuarioConversaGrupo extends AbstractTableModel {
 
     public void setUsuarios(ArrayList<Usuario> usuarios) {
         this.usuarios = usuarios;
+    }
+    
+    public void addUsuario(Usuario usuario) {
+        this.getUsuarios().add(usuario);
+        int i = this.getUsuarios().indexOf(usuario);
+        this.fireTableRowsInserted(i, i);
+    }
+    
+    public void deleteUsuario(Usuario usuarioSelecionado) {
+        int i = this.getUsuarios().indexOf(usuarioSelecionado);
+        this.getUsuarios().remove(usuarioSelecionado);
+        this.fireTableRowsDeleted(i, i);
     }
     
     @Override
@@ -47,5 +58,5 @@ public class TableModelUsuarioConversaGrupo extends AbstractTableModel {
     public String getColumnName(int column) {
         return "Nome";
     }
-    
+
 }

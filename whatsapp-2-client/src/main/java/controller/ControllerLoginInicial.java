@@ -41,10 +41,10 @@ public class ControllerLoginInicial extends ControllerBase<ViewLoginInicial> {
             }
             else {
                 if (this.isUsuarioCadastrado(username)) {
-                    (new ControllerLoginFinal(username)).abreTela();
+                    new ControllerLoginFinal(username).abreTela();
                 }
                 else {
-                    (new ControllerCadastroUsuario(username)).abreTela();
+                    new ControllerCadastroUsuario(username).abreTela();
                 }
                 this.getView().setVisible(false);
             }
@@ -74,7 +74,7 @@ public class ControllerLoginInicial extends ControllerBase<ViewLoginInicial> {
     
     private void addActionListenerConfigurarServidor(ViewLoginInicial view) {
         view.getBtnConfigurarServidor().addActionListener((e) -> {
-            (new ControllerConfiguracoesServidor()).abreTela();
+            new ControllerConfiguracoesServidor().abreTela();
         });
     }
 

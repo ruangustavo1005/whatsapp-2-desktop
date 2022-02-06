@@ -35,7 +35,7 @@ public class ControllerCadastroUsuario extends ControllerBase<ViewCadastroUsuari
 
     private void addActionListenerVoltar(ViewCadastroUsuario view) {
         view.getBtnVoltar().addActionListener((e) -> {
-            (new ControllerLoginInicial(this.usuario.getUsername())).abreTela();
+            new ControllerLoginInicial(this.usuario.getUsername()).abreTela();
             this.getView().setVisible(false);
         });
     }
