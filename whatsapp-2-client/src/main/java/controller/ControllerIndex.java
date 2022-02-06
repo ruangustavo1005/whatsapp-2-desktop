@@ -3,6 +3,8 @@ package controller;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
@@ -14,6 +16,7 @@ import model.Conversa;
 import model.Usuario;
 import utils.Connection;
 import view.TableModelConversa;
+import view.ViewConversa;
 import view.ViewIndex;
 
 /**
@@ -24,6 +27,7 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
     static private ControllerIndex instance;
     
     private Usuario usuarioLogado;
+    private ControllerListenNewMessages controllerListenNewMessages;
     
     private ControllerIndex() {
         
@@ -36,6 +40,12 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
 
     @Override
     public void abreTela() {
+        try {
+            this.controllerListenNewMessages = new ControllerListenNewMessages(ControllerIndex.getInstance().getUsuarioLogado().getPorta());
+            new Thread(this.controllerListenNewMessages).start();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível iniciar o notificador de mensagens novas: ".concat(ex.getMessage()), "Erro", JOptionPane.ERROR_MESSAGE);
+        }
         this.getView().getTableModel().clear();
         this.getConversas().forEach(conversa -> this.getView().getTableModel().addConversa(conversa));
         super.abreTela();
@@ -54,6 +64,7 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
         this.addActionListenerNewConversaPrivada(view);
         this.addActionListenerNewConversaGrupo(view);
         this.addActionListenerAbrirConversa(view);
+        this.addActionListenersWindow(view);
     }
     
     private void addActionListenerLogout(ViewIndex view) {
@@ -77,7 +88,6 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
             this.getView().dispose();
         });
     }
-    
     
     private void addActionListenerAbrirConversa(ViewIndex view) {
         view.getBtnAbrirConversa().addActionListener((e) -> {
@@ -110,6 +120,38 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
         ControllerConversa.getInstance().setConversa(conversa).abreTela();
     }
     
+    public ControllerListenNewMessages getControllerListenNewMessages() {
+        return controllerListenNewMessages;
+    }
+    
+    private void addActionListenersWindow(ViewIndex view) {
+        view.addWindowListener(new WindowListener() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                ControllerIndex.getInstance().getControllerListenNewMessages().stop();
+                ControllerIndex.getInstance().getView().dispose();
+            }
+
+            @Override
+            public void windowOpened(WindowEvent e) {}
+
+            @Override
+            public void windowClosed(WindowEvent e) {}
+
+            @Override
+            public void windowIconified(WindowEvent e) {}
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {}
+
+            @Override
+            public void windowActivated(WindowEvent e) {}
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {}
+        });
+    }
+
     private ArrayList<Conversa> getConversas() {
         ArrayList<Conversa> conversas = new ArrayList<>();
         
