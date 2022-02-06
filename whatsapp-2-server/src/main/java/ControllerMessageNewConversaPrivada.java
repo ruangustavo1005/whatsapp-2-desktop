@@ -24,13 +24,14 @@ public class ControllerMessageNewConversaPrivada extends ControllerMessageBase<M
                 UUID uuid = UUID.randomUUID();
                 String uuidAsString = uuid.toString();
                 ConversaPrivada conversaPrivada = new ConversaPrivada(uuidAsString, usuario1, usuario2, 0);
+                Dao.getInstance().getConversas().put(uuidAsString, conversaPrivada);
                 this.write(uuidAsString);
+            } else {
+                this.write("");
             }
-            this.write("");
         } catch (IOException ex) {
             Logger.getLogger(ControllerMessageNewConversaPrivada.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
     
 }

@@ -30,8 +30,9 @@ public class ControllerMessageGetConversas extends ControllerMessageBase<Message
                     }
                 });
                 this.write(retorno);
+            } else {
+                this.write("");
             }
-            this.write("");
         } catch (IOException ex) {
             Logger.getLogger(ControllerMessageGetConversas.class.getName()).log(Level.SEVERE, null, ex);
         }

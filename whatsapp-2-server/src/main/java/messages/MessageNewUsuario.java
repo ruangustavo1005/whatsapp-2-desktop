@@ -14,6 +14,10 @@ public class MessageNewUsuario extends MessageBase {
     }
     
     public String getPassword() {
+        return this.getInfo(3);
+    }
+    
+    public String getPort() {
         return this.getInfo(4);
     }
     

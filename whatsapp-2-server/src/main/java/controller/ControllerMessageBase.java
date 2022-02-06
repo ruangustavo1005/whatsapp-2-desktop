@@ -10,6 +10,7 @@ import messages.MessageBase;
 
 /**
  * @author Leonardo e Ruan
+ * @param <TypeMessage>
  */
 abstract public class ControllerMessageBase<TypeMessage extends MessageBase> {
     
@@ -18,15 +19,6 @@ abstract public class ControllerMessageBase<TypeMessage extends MessageBase> {
     private OutputStream output;
     
     private TypeMessage message;
-    
-    public ControllerMessageBase() {
-        try {
-            this.input = this.connection.getInputStream();
-            this.output = this.connection.getOutputStream();
-        } catch (IOException ex) {
-            Logger.getLogger(ControllerMessageLoginInicial.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
     
     public void setMessageBase(TypeMessage message) {
         this.message = message;
@@ -42,8 +34,10 @@ abstract public class ControllerMessageBase<TypeMessage extends MessageBase> {
         return connection;
     }
 
-    public void setConnection(Socket connection) {
+    public void setConnection(Socket connection) throws IOException {
         this.connection = connection;
+        this.input = connection.getInputStream();
+        this.output = connection.getOutputStream();
     }
 
     public InputStream getInput() {
@@ -55,6 +49,7 @@ abstract public class ControllerMessageBase<TypeMessage extends MessageBase> {
     }
     
     public void write(String retorno) throws IOException {
+//        ControllerApp.getInstance().getInstanceView();
         this.output.write(retorno.getBytes());
     }
     

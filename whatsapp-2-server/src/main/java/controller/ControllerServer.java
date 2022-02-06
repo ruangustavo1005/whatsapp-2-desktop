@@ -28,20 +28,20 @@ public class ControllerServer extends Thread  {
         while (true) {            
             TelaServer.getInstance().addLog("Aguardando conexão");
             try{
-                Socket conn = server.accept();
-                TelaServer.getInstance().addLog("Conectado com: " + conn.getInetAddress().getHostAddress() + ":" + conn.getLocalPort());
-                this.out = conn.getOutputStream();
-                this.input = conn.getInputStream();
-                byte[] dadosBrutos = new byte[1024];
-                int dadosLidos = input.read(dadosBrutos);
-                if(dadosLidos >= 0)  {
-                    String dadosStr = new String(dadosBrutos, 0, dadosLidos);
-                    TelaServer.getInstance().addLog(dadosStr);
-                    MessageBase mensagem = FactoryClientMessage.getClientMessage(dadosStr);
-                    ControllerMessageBase controller = FactoryControllerClientMessage.getControllerClientMessage(mensagem, conn);
-                    controller.execute();
+                try (Socket conn = server.accept()) {
+                    TelaServer.getInstance().addLog("Conectado com: " + conn.getInetAddress().getHostAddress() + ":" + conn.getLocalPort());
+                    this.out = conn.getOutputStream();
+                    this.input = conn.getInputStream();
+                    byte[] dadosBrutos = new byte[1024];
+                    int dadosLidos = input.read(dadosBrutos);
+                    if(dadosLidos >= 0)  {
+                        String dadosStr = new String(dadosBrutos, 0, dadosLidos);
+                        TelaServer.getInstance().addLog(dadosStr);
+                        MessageBase mensagem = FactoryClientMessage.getClientMessage(dadosStr);
+                        ControllerMessageBase controller = FactoryControllerClientMessage.getControllerClientMessage(mensagem, conn);
+                        controller.execute();
+                    }
                 }
-                conn.close();
             } catch (IOException ex) {
                 Logger.getLogger(ControllerServer.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {

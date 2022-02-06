@@ -19,8 +19,9 @@ public class ControllerMessageLoginFinal extends ControllerMessageBase<MessageLo
             Usuario usuario = Dao.getInstance().getUsuarios().get(this.getMessageBase().getUsername());
             if(this.getMessageBase().getPassword().equals(usuario.getSenha())) {
                 this.write("1;" + usuario.getNome());
+            } else {
+                this.write("0");
             }
-            this.write("0");
         } catch (IOException ex) {
             Logger.getLogger(ControllerMessageLoginFinal.class.getName()).log(Level.SEVERE, null, ex);
         }

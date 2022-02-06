@@ -1,6 +1,5 @@
 package model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,11 +10,13 @@ public class ConversaGrupo extends Conversa {
     private String nomeConversa;
     
     private List<Usuario> usuarios;
-    
-    public ConversaGrupo() {
-        this.usuarios = new ArrayList<>();
-    }
 
+    public ConversaGrupo(String id, String nomeConversa, List<Usuario> usuarios, int qtdMensagensNaoLidas) {
+        super(id, qtdMensagensNaoLidas);
+        this.nomeConversa = nomeConversa;
+        this.usuarios = usuarios;
+    }
+    
     @Override
     public String getTitulo() {
         return this.nomeConversa;

@@ -20,7 +20,7 @@ public class ControllerMessageNewUsuario extends ControllerMessageBase<MessageNe
                 this.getMessageBase().getPassword(), 
                 this.getMessageBase().getMomeCompleto(), 
                 this.getConnection().getInetAddress().getHostAddress(), 
-                this.getConnection().getPort());
+                Integer.valueOf(this.getMessageBase().getPort()));
 
             Dao.getInstance().getUsuarios().put(usuario.getUsername(), usuario);
         
