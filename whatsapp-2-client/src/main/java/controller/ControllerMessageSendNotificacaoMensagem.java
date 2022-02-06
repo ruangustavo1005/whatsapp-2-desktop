@@ -5,7 +5,7 @@ import message.MessageSendNotificacaoMensagem;
 /**
  * @author Leonardo & Ruan
  */
-public class ControllerSendNotificacaoMensagem extends ControllerMessageReceiveBase<MessageSendNotificacaoMensagem> {
+public class ControllerMessageSendNotificacaoMensagem extends ControllerMessageReceiveBase<MessageSendNotificacaoMensagem> {
 
     @Override
     public void execute() {

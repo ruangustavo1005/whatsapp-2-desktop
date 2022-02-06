@@ -48,7 +48,7 @@ public class ControllerConversa extends ControllerBase<ViewConversa>{
             this.controllerListenNewMessages = new ControllerListenNewMessages(ControllerIndex.getInstance().getUsuarioLogado().getPorta());
             new Thread(this.controllerListenNewMessages).start();
         } catch (IOException ex) {
-            JOptionPane.showMessageDialog(null, "Não foi possível iniciar o notificador de mensagens novas", "Erro", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Não foi possível iniciar o notificador de mensagens novas: ".concat(ex.getMessage()), "Erro", JOptionPane.ERROR_MESSAGE);
         }
         this.getView().getTxtHistorico().setText(this.getMensagens(this.getConversa()));
         this.getView().setTitle(conversa.getTitulo());
@@ -100,12 +100,16 @@ public class ControllerConversa extends ControllerBase<ViewConversa>{
         }
         this.getView().getTxtHistorico().append(mensagem.toString());
     }
+
+    public ControllerListenNewMessages getControllerListenNewMessages() {
+        return controllerListenNewMessages;
+    }
     
     private void addActionListenersWindow(ViewConversa view) {
         view.addWindowListener(new WindowListener() {
             @Override
             public void windowClosing(WindowEvent e) {
-                ControllerConversa.getInstance().controllerListenNewMessages.stop();
+                ControllerConversa.getInstance().getControllerListenNewMessages().stop();
                 ControllerIndex.getInstance().abreTela();
                 ControllerConversa.getInstance().getView().dispose();
             }
