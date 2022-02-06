@@ -8,10 +8,19 @@ import view.TelaServer;
 
 public class ControllerApp {
     
+    public static ControllerApp instance;
+    
     private ControllerServer server;
 
-    public ControllerApp() {
+    private ControllerApp() {
         this.server = new ControllerServer();
+    }
+    
+    public static ControllerApp getInstance() {
+        if(instance == null) {
+            instance = new ControllerApp();
+        } 
+        return instance;
     }
     
     public void showView() {

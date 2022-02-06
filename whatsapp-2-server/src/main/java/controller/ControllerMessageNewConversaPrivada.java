@@ -21,7 +21,7 @@ public class ControllerMessageNewConversaPrivada extends ControllerMessageBase<M
             Usuario usuario1 = Dao.getInstance().getUsuarios().get(this.getMessageBase().getUsername1());
             Usuario usuario2 = Dao.getInstance().getUsuarios().get(this.getMessageBase().getUsername2());
             
-            if(usuario1 != null && usuario2 != usuario2) {
+            if(usuario1 != null && usuario2 != null) {
                 if(!this.hasSameConversa(usuario1.getUsername(), usuario2.getUsername())) {
                     UUID uuid = UUID.randomUUID();
                     String uuidAsString = uuid.toString();
@@ -32,7 +32,7 @@ public class ControllerMessageNewConversaPrivada extends ControllerMessageBase<M
                     this.write("0");
                 }
             } else {
-                this.write("");
+                this.write("0");
             }
         } catch (IOException ex) {
             Logger.getLogger(ControllerMessageNewConversaPrivada.class.getName()).log(Level.SEVERE, null, ex);
@@ -42,8 +42,8 @@ public class ControllerMessageNewConversaPrivada extends ControllerMessageBase<M
     private boolean hasSameConversa(String usuario1, String usuario2) {
         for (Conversa conversa : Dao.getInstance().getConversas().values()) {
             if(conversa instanceof ConversaPrivada) {
-                if(((ConversaPrivada) conversa).getUsuario1().getUsername().equals(usuario1) && ((ConversaPrivada) conversa).getUsuario2().getUsername().equals(usuario2) ||
-                    ((ConversaPrivada) conversa).getUsuario1().getUsername().equals(usuario2) && ((ConversaPrivada) conversa).getUsuario2().getUsername().equals(usuario1)) {
+                if((((ConversaPrivada) conversa).getUsuario1().getUsername().equals(usuario1) && ((ConversaPrivada) conversa).getUsuario2().getUsername().equals(usuario2)) ||
+                    (((ConversaPrivada) conversa).getUsuario1().getUsername().equals(usuario2) && ((ConversaPrivada) conversa).getUsuario2().getUsername().equals(usuario1))) {
                     return true;
                 }
             }

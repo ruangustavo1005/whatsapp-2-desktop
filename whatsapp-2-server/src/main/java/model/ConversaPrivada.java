@@ -16,12 +16,7 @@ public class ConversaPrivada extends Conversa {
         this.usuario1 = usuario1;
         this.usuario2 = usuario2;
     }
-
-    @Override
-    public String getTitulo() {
-        return usuario1.getNome();
-    }
-
+    
     @Override
     public List<Usuario> getUsuariosNotificar() {
         List<Usuario> users = new ArrayList<>();

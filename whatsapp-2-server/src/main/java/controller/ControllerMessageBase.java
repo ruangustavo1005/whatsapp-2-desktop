@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import messages.MessageBase;
 
 /**
@@ -49,7 +47,7 @@ abstract public class ControllerMessageBase<TypeMessage extends MessageBase> {
     }
     
     public void write(String retorno) throws IOException {
-//        ControllerApp.getInstance().getInstanceView();
+        ControllerApp.getInstance().getInstanceView().addLog(retorno);
         this.output.write(retorno.getBytes());
     }
     

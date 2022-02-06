@@ -18,8 +18,6 @@ abstract public class Conversa {
         this.mensagens = new ArrayList<>();
     }
     
-    public abstract String getTitulo();
-    
     public abstract List<Usuario> getUsuariosNotificar();
     
     public void addMensagem(Mensagem mensagem) {
@@ -46,9 +44,4 @@ abstract public class Conversa {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return this.id + ";" + this.getTitulo();
-    }
-    
 }

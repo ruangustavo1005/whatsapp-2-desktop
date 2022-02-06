@@ -25,9 +25,9 @@ public class ControllerMessageSendMensagem extends ControllerMessageBase<Message
             Usuario usuario = dao.getUsuarios().get(this.getMessageBase().getUsername());
             Conversa conversa = dao.getConversas().get(this.getMessageBase().getConversa());
             if (usuario != null && conversa != null) {
-                Mensagem mensagem = new Mensagem(usuario, this.getMessageBase().getConteudoMensagem(), DateUtils.stringToDate(this.getMessageBase().getDataHora()));
+                Mensagem mensagem = new Mensagem(usuario, this.getMessageBase().getConteudoMensagem(), DateUtils.stringToDateHour(this.getMessageBase().getDataHora()));
                 conversa.addMensagem(mensagem);
-                this.sendNotificacaoMensagem(conversa, mensagem);
+//                this.sendNotificacaoMensagem(conversa, mensagem);
                 this.write("1");
             } else {
                 this.write("0");

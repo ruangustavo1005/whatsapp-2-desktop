@@ -17,7 +17,6 @@ public class ConversaGrupo extends Conversa {
         this.usuarios = usuarios;
     }
     
-    @Override
     public String getTitulo() {
         return this.nomeConversa;
     }

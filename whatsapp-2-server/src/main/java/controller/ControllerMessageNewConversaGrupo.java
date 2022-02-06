@@ -30,6 +30,7 @@ public class ControllerMessageNewConversaGrupo extends ControllerMessageBase<Mes
                         usuarios.add(usuarioGroup);
                     }
                 });
+                usuarios.add(usuario);
                 ConversaGrupo conversaGrupo = new ConversaGrupo(uuidAsString, this.getMessageBase().getTitulo(), usuarios, 0);
                 dao.getConversas().put(uuidAsString, conversaGrupo);
                 this.write(uuidAsString);

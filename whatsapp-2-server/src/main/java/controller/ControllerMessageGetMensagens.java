@@ -23,9 +23,13 @@ public class ControllerMessageGetMensagens extends ControllerMessageBase<Message
                 for(Mensagem mensagem : conversa.getMensagens()) {
                     retorno += (mensagem.toString() + "\n");
                 }
-                this.write(retorno);
+                if(!retorno.isEmpty()) {
+                    this.write(retorno);
+                } else {
+                    this.write("0");
+                }
             } else {
-                this.write("");
+                this.write("0");
             }
         } catch (IOException ex) {
             Logger.getLogger(ControllerMessageGetMensagens.class.getName()).log(Level.SEVERE, null, ex);
