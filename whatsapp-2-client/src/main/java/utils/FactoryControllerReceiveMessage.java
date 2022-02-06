@@ -1,17 +1,17 @@
-package model;
+package utils;
 
-import controller.ControllerMessageBase;
+import controller.ControllerMessageReceiveBase;
 import java.io.IOException;
 import java.net.Socket;
-import messages.MessageBase;
+import message.MessageReceiveBase;
 
 /**
  * @author Leonardo e Ruan
  */
-public class FactoryControllerClientMessage {
+public class FactoryControllerReceiveMessage {
     
-    public static ControllerMessageBase getControllerClientMessage(MessageBase classe, Socket connection) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
-        ControllerMessageBase controller =  (ControllerMessageBase) Class.forName("controller.Controller" + classe.getClass().getSimpleName()).newInstance();
+    public static ControllerMessageReceiveBase getControllerClientMessage(MessageReceiveBase classe, Socket connection) throws ClassNotFoundException, InstantiationException, IllegalAccessException, IOException {
+        ControllerMessageReceiveBase controller = (ControllerMessageReceiveBase) Class.forName("controller.Controller" + classe.getClass().getSimpleName()).newInstance();
         controller.setMessageBase(classe);
         controller.setConnection(connection);
         return controller;

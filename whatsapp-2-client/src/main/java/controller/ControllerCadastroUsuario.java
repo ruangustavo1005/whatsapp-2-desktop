@@ -36,7 +36,7 @@ public class ControllerCadastroUsuario extends ControllerBase<ViewCadastroUsuari
     private void addActionListenerVoltar(ViewCadastroUsuario view) {
         view.getBtnVoltar().addActionListener((e) -> {
             new ControllerLoginInicial(this.usuario.getUsername()).abreTela();
-            this.getView().setVisible(false);
+            this.getView().dispose();
         });
     }
 
@@ -64,7 +64,7 @@ public class ControllerCadastroUsuario extends ControllerBase<ViewCadastroUsuari
                         
                         if (doCadastroUsuario(this.usuario)) {
                             ControllerIndex.getInstance().setUsuarioLogado(this.usuario).abreTela();
-                            this.getView().setVisible(false);
+                            this.getView().dispose();
                         }
                         else {
                             JOptionPane.showMessageDialog(this.getView(), "Houve um erro não esperado", "Erro", JOptionPane.ERROR_MESSAGE);

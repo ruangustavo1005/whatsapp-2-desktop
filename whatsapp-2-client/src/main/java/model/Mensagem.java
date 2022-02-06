@@ -66,7 +66,7 @@ public class Mensagem {
         return "["
                 .concat(this.getDataHoraAsString())
                 .concat("] ")
-                .concat(this.getUsuario().getUsername())
+                .concat(this.getUsuario().getNome())
                 .concat(":\n")
                 .concat(this.getMensagem());
     }

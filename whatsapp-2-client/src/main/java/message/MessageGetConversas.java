@@ -3,7 +3,7 @@ package message;
 /**
  * @author Leonardo & Ruan
  */
-public class MessageGetConversas extends MessageBase {
+public class MessageGetConversas extends MessageSendBase {
 
     private String username;
 

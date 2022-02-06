@@ -14,7 +14,7 @@ import model.Usuario;
 
 /**
  *
- * @author Ruan
+ * @author Leonardo & Ruan
  */
 public class ViewCadastroConversaGrupo extends ViewBase {
 
@@ -51,6 +51,7 @@ public class ViewCadastroConversaGrupo extends ViewBase {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W2D - Iniciar Conversa em Grupo");
+        setResizable(false);
 
         jLabel1.setText("Com quem você quer conversar?");
 

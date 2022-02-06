@@ -5,15 +5,13 @@
  */
 package view;
 
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import model.Conversa;
 
 /**
  *
- * @author Ruan
+ * @author Leonardo & Ruan
  */
 public class ViewIndex extends ViewBase {
 
@@ -22,11 +20,9 @@ public class ViewIndex extends ViewBase {
     /**
      * Creates new form ViewIndex
      */
-    public ViewIndex(ArrayList<Conversa> conversas) {
-        this.tableModel = new TableModelConversa(conversas);
+    public ViewIndex() {
+        this.tableModel = new TableModelConversa();
         initComponents();
-        this.getTable().setDefaultRenderer(Object.class, new TableCellRendererConversa());
-        this.getTable().getColumnModel().getColumn(0).setPreferredWidth(250);
     }
 
     /**

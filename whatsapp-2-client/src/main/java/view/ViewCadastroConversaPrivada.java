@@ -12,7 +12,7 @@ import model.Usuario;
 
 /**
  *
- * @author Ruan
+ * @author Leonardo & Ruan
  */
 public class ViewCadastroConversaPrivada extends ViewBase {
 
@@ -39,6 +39,7 @@ public class ViewCadastroConversaPrivada extends ViewBase {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W2D - Iniciar Conversa Privada");
+        setResizable(false);
 
         jLabel1.setText("Com quem você quer conversar?");
 

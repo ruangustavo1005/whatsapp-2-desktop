@@ -11,7 +11,7 @@ import javax.swing.JToggleButton;
 
 /**
  *
- * @author Ruan
+ * @author Leonardo & Ruan
  */
 public class ViewLoginFinal extends ViewBase {
 
@@ -38,6 +38,7 @@ public class ViewLoginFinal extends ViewBase {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("W2D - Login");
+        setResizable(false);
 
         jLabel1.setText("Senha:");
 

@@ -30,15 +30,11 @@ public class TableModelConversa extends AbstractTableModel {
         this.fireTableRowsInserted(i, i);
     }
     
-    public void updateConversa(Conversa conversa) {
-        int index = IntStream.range(0, this.getRowCount())
-                .filter(i -> this.getConversas().get(i).getId().equals(conversa.getId()))
-                .findFirst()
-                .getAsInt();
-        
-        if (index >= 0) {
-            this.getConversas().get(index).setQtdMensagensNaoLidas(conversa.getQtdMensagensNaoLidas());
-            this.fireTableRowsUpdated(index, index);
+    public void clear() {
+        int i = this.getConversas().size();
+        if (i > 0) {
+            this.getConversas().clear();
+            this.fireTableRowsDeleted(0, i - 1);
         }
     }
     
@@ -49,23 +45,18 @@ public class TableModelConversa extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 2;
+        return 1;
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        switch (columnIndex) {
-            case 0: return this.getConversas().get(rowIndex).getTitulo();
-            case 1: return this.getConversas().get(rowIndex).getQtdMensagensNaoLidas();
-            default: return null;
-        }
+        return this.getConversas().get(rowIndex).getTitulo();
     }
 
     @Override
     public String getColumnName(int column) {
         switch (column) {
             case 0: return "Conversa";
-            case 1: return "Notificações";
             default: return null;
         }
     }

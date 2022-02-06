@@ -82,9 +82,9 @@ public class ControllerCadastroConversaGrupo extends ControllerBase<ViewCadastro
                     Conversa conversa = this.newConversaGrupo(titulo, usuarios);
 
                     if (conversa != null) {
-                        ControllerIndex.getInstance().getView().getTableModel().addConversa(conversa);
+                        ControllerIndex.getInstance().getView().dispose();
                         ControllerConversa.getInstance().setConversa(conversa).abreTela();
-                        this.getView().setVisible(false);
+                        this.getView().dispose();
                     }
                 }
             }
@@ -103,7 +103,7 @@ public class ControllerCadastroConversaGrupo extends ControllerBase<ViewCadastro
                 byte[] dadosBrutos = new byte[1024];
                 String response = new String(dadosBrutos, 0, inputStream.read(dadosBrutos));
                 
-                if (!response.isEmpty()) {
+                if (!response.equals("0")) {
                     String[] responseLines = response.split("\n");
                     
                     for (String line : responseLines) {
@@ -149,7 +149,8 @@ public class ControllerCadastroConversaGrupo extends ControllerBase<ViewCadastro
                     JOptionPane.showMessageDialog(this.getView(), "Houve um erro ao buscar o usuário", "Erro", JOptionPane.ERROR_MESSAGE);
                 }
                 else {
-                    conversa.setId(response)
+                    conversa = new Conversa()
+                            .setId(response)
                             .setTitulo(titulo);
                 }
             }

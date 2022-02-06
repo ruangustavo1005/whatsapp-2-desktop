@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author Ruan
+ * @author Leonardo & Ruan
  */
 public class ViewLoginInicial extends ViewBase {
 
@@ -37,6 +37,7 @@ public class ViewLoginInicial extends ViewBase {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("W2D - Bem vindo!");
+        setResizable(false);
 
         jLabel1.setText("Nome de usuário:");
 

@@ -5,7 +5,7 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 
 /**
- * @author Ruan
+ * @author Leonardo & Ruan
  */
 public class Connection {
 

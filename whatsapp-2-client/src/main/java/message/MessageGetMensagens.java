@@ -3,19 +3,9 @@ package message;
 /**
  * @author Leonardo & Ruan
  */
-public class MessageGetMensagens extends MessageBase {
+public class MessageGetMensagens extends MessageSendBase {
 
-    private String username;
     private String conversa;
-
-    public String getUsername() {
-        return username;
-    }
-
-    public MessageGetMensagens setUsername(String username) {
-        this.username = username;
-        return this;
-    }
 
     public String getConversa() {
         return conversa;
@@ -34,7 +24,6 @@ public class MessageGetMensagens extends MessageBase {
     @Override
     protected String[] getParams() {
         return new String[]{
-            this.getUsername(),
             this.getConversa()
         };
     }

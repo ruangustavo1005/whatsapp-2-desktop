@@ -11,7 +11,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author Ruan
+ * @author Leonardo & Ruan
  */
 public class ViewCadastroUsuario extends ViewBase {
 
@@ -44,6 +44,7 @@ public class ViewCadastroUsuario extends ViewBase {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("W2D - Cadastro de Usuário");
+        setResizable(false);
 
         jLabel1.setText("Nome completo:");
 

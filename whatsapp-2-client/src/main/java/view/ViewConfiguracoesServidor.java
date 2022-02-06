@@ -10,7 +10,7 @@ import javax.swing.JTextField;
 
 /**
  *
- * @author Ruan
+ * @author Leonardo & Ruan
  */
 public class ViewConfiguracoesServidor extends ViewBase {
 
@@ -39,6 +39,7 @@ public class ViewConfiguracoesServidor extends ViewBase {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("W2D - Configurar Servidor");
+        setResizable(false);
 
         btnAplicar.setText("Aplicar");
 

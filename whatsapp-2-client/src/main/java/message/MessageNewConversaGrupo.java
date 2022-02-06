@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * @author Leonardo & Ruan
  */
-public class MessageNewConversaGrupo extends MessageBase {
+public class MessageNewConversaGrupo extends MessageSendBase {
 
     private String username;
     private String titulo;

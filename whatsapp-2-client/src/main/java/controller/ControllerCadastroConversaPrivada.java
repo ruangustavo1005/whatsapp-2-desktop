@@ -41,9 +41,9 @@ public class ControllerCadastroConversaPrivada extends ControllerBase<ViewCadast
                 Conversa conversa = this.newConversaPrivada(usuario);
                 
                 if (conversa != null) {
-                    ControllerIndex.getInstance().getView().getTableModel().addConversa(conversa);
+                    ControllerIndex.getInstance().getView().dispose();
                     ControllerConversa.getInstance().setConversa(conversa).abreTela();
-                    this.getView().setVisible(false);
+                    this.getView().dispose();
                 }
             }
         });
@@ -70,7 +70,8 @@ public class ControllerCadastroConversaPrivada extends ControllerBase<ViewCadast
                     JOptionPane.showMessageDialog(this.getView(), "Vocês já tem uma conversa ativa", "Informação", JOptionPane.INFORMATION_MESSAGE);
                 }
                 else {
-                    conversa.setId(response)
+                    conversa = new Conversa()
+                            .setId(response)
                             .setTitulo(usuario.getNome());
                 }
             }
@@ -94,7 +95,7 @@ public class ControllerCadastroConversaPrivada extends ControllerBase<ViewCadast
                 byte[] dadosBrutos = new byte[1024];
                 String response = new String(dadosBrutos, 0, inputStream.read(dadosBrutos));
                 
-                if (!response.isEmpty()) {
+                if (!response.equals("0")) {
                     String[] responseLines = response.split("\n");
                     
                     for (String line : responseLines) {

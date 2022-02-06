@@ -3,7 +3,7 @@ package message;
 /**
  * @author Leonardo & Ruan
  */
-abstract public class MessageBase {
+abstract public class MessageSendBase {
 
     abstract protected String getId();
     

@@ -1,9 +1,9 @@
-package messages;
+package message;
 
 /**
  * @author Leonardo e Ruan
  */
-public class MessageBase {
+public class MessageReceiveBase {
     
     private String[] infos;
 

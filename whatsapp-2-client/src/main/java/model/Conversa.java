@@ -11,7 +11,6 @@ public class Conversa {
     private String id;
     private String titulo;
     private List<Mensagem> mensagens;
-    private int qtdMensagensNaoLidas;
     
     public String getId() {
         return this.id;
@@ -45,15 +44,6 @@ public class Conversa {
 
     public Conversa addMensagem(Mensagem mensagem) {
         this.mensagens.add(mensagem);
-        return this;
-    }
-    
-    public int getQtdMensagensNaoLidas() {
-        return this.qtdMensagensNaoLidas;
-    }
-
-    public Conversa setQtdMensagensNaoLidas(int qtdMensagensNaoLidas) {
-        this.qtdMensagensNaoLidas = qtdMensagensNaoLidas;
         return this;
     }
     

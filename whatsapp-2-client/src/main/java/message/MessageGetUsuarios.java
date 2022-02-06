@@ -3,7 +3,7 @@ package message;
 /**
  * @author Leonardo & Ruan
  */
-public class MessageGetUsuarios extends MessageBase {
+public class MessageGetUsuarios extends MessageSendBase {
 
     @Override
     protected String getId() {

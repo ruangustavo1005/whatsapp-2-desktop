@@ -3,7 +3,7 @@ package message;
 /**
  * @author Leonardo & Ruan
  */
-public class MessageLoginInicial extends MessageBase {
+public class MessageLoginInicial extends MessageSendBase {
 
     private String username;
 

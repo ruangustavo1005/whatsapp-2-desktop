@@ -5,7 +5,7 @@ import model.Usuario;
 /**
  * @author Leonardo & Ruan
  */
-public class MessageNewUsuario extends MessageBase {
+public class MessageNewUsuario extends MessageSendBase {
 
     private Usuario usuario;
 

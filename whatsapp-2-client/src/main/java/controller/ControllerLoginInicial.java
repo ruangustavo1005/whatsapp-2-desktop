@@ -46,7 +46,7 @@ public class ControllerLoginInicial extends ControllerBase<ViewLoginInicial> {
                 else {
                     new ControllerCadastroUsuario(username).abreTela();
                 }
-                this.getView().setVisible(false);
+                this.getView().dispose();
             }
         });
     }

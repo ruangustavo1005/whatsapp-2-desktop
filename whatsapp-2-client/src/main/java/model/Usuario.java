@@ -45,5 +45,10 @@ public class Usuario extends Model {
         this.porta = porta;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return this.getNome();
+    }
     
 }

@@ -7,11 +7,10 @@ package view;
 
 import javax.swing.JButton;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 
 /**
  *
- * @author Ruan
+ * @author Leonardo & Ruan
  */
 public class ViewConversa extends ViewBase {
 
@@ -31,19 +30,26 @@ public class ViewConversa extends ViewBase {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        txtHistorico = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtMensagem = new javax.swing.JTextArea();
         btnEnviar = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtHistorico = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         txtMensagem.setColumns(20);
         txtMensagem.setRows(5);
         jScrollPane1.setViewportView(txtMensagem);
 
         btnEnviar.setText("Enviar");
+
+        txtHistorico.setColumns(20);
+        txtHistorico.setRows(5);
+        txtHistorico.setEnabled(false);
+        jScrollPane2.setViewportView(txtHistorico);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -53,7 +59,7 @@ public class ViewConversa extends ViewBase {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtHistorico)
+                    .addComponent(jScrollPane2)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -64,8 +70,8 @@ public class ViewConversa extends ViewBase {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -82,7 +88,7 @@ public class ViewConversa extends ViewBase {
         return btnEnviar;
     }
 
-    public JTextField getTxtHistorico() {
+    public JTextArea getTxtHistorico() {
         return txtHistorico;
     }
 
@@ -93,8 +99,9 @@ public class ViewConversa extends ViewBase {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEnviar;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField txtHistorico;
+    private javax.swing.JTextArea txtHistorico;
     private javax.swing.JTextArea txtMensagem;
     // End of variables declaration//GEN-END:variables
 }

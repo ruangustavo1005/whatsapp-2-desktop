@@ -24,7 +24,8 @@ public class ControllerConversa extends ControllerBase<ViewConversa>{
     static private ControllerConversa instance;
     
     private Conversa conversa;
-
+    private ControllerListenNewMessages controllerListenNewMessages;
+    
     private ControllerConversa() {
         
     }
@@ -43,6 +44,12 @@ public class ControllerConversa extends ControllerBase<ViewConversa>{
 
     @Override
     public void abreTela() {
+        try {
+            this.controllerListenNewMessages = new ControllerListenNewMessages(ControllerIndex.getInstance().getUsuarioLogado().getPorta());
+            new Thread(this.controllerListenNewMessages).start();
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "Não foi possível iniciar o notificador de mensagens novas", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
         this.getView().getTxtHistorico().setText(this.getMensagens(this.getConversa()));
         this.getView().setTitle(conversa.getTitulo());
         super.abreTela();
@@ -77,7 +84,8 @@ public class ControllerConversa extends ControllerBase<ViewConversa>{
                         .setMensagem(texto);
                 
                 if (this.sendMessage(mensagem, this.getConversa())) {
-                    this.getView().getTxtMensagem().append("\n\n".concat(mensagem.toString()));
+                    this.appendMensagem(mensagem);
+                    this.getView().getTxtMensagem().setText("");
                 }
                 else {
                     JOptionPane.showMessageDialog(this.getView(), "Houve um erro ao tentar enviar sua mensagem", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -86,11 +94,20 @@ public class ControllerConversa extends ControllerBase<ViewConversa>{
         });
     }
     
+    public void appendMensagem(Mensagem mensagem) {
+        if (!this.getView().getTxtHistorico().getText().isEmpty()) {
+            this.getView().getTxtHistorico().append("\n\n");
+        }
+        this.getView().getTxtHistorico().append(mensagem.toString());
+    }
+    
     private void addActionListenersWindow(ViewConversa view) {
         view.addWindowListener(new WindowListener() {
             @Override
             public void windowClosing(WindowEvent e) {
+                ControllerConversa.getInstance().controllerListenNewMessages.stop();
                 ControllerIndex.getInstance().abreTela();
+                ControllerConversa.getInstance().getView().dispose();
             }
 
             @Override
@@ -119,7 +136,6 @@ public class ControllerConversa extends ControllerBase<ViewConversa>{
         try {
             try (Socket socket = (new Connection()).getInstanceSocket()) {
                 MessageGetMensagens messageGetMensagens = new MessageGetMensagens()
-                        .setUsername(ControllerIndex.getInstance().getUsuarioLogado().getUsername())
                         .setConversa(conversa.getId());
                 socket.getOutputStream().write(messageGetMensagens.getMessageBytes());
                 
@@ -127,7 +143,7 @@ public class ControllerConversa extends ControllerBase<ViewConversa>{
                 byte[] dadosBrutos = new byte[1024];
                 String response = new String(dadosBrutos, 0, inputStream.read(dadosBrutos));
                 
-                if (!response.isEmpty()) {
+                if (!response.equals("0")) {
                     String[] responseLines = response.split("\n");
                     
                     for (String line : responseLines) {
@@ -137,7 +153,7 @@ public class ControllerConversa extends ControllerBase<ViewConversa>{
                                 .setDataHora(linePieces[2])
                                 .setUsuario(new Usuario()
                                         .setNome(linePieces[0]))
-                                .setMensagem(linePieces[0])
+                                .setMensagem(linePieces[1])
                                 .toString());
                     }
                 }

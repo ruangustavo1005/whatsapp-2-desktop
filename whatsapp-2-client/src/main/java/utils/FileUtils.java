@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * @author Ruan
+ * @author Leonardo & Ruan
  */
 public class FileUtils {
 

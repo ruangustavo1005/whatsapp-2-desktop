@@ -5,7 +5,7 @@ import model.Mensagem;
 /**
  * @author Leonardo & Ruan
  */
-public class MessageSendMensagem extends MessageBase {
+public class MessageSendMensagem extends MessageSendBase {
 
     private String conversa;
     private Mensagem mensagem;

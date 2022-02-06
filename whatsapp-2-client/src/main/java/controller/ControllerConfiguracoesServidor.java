@@ -62,7 +62,6 @@ public class ControllerConfiguracoesServidor extends ControllerBase<ViewConfigur
             int timeout = 5000;
             try {
                 try (Socket socket = (new Connection(timeout)).getInstanceSocket()) {
-                    socket.close();
                     JOptionPane.showMessageDialog(this.getView(), "Conexão OK", "Info", JOptionPane.INFORMATION_MESSAGE);
                 }
             } catch (IOException ex) {

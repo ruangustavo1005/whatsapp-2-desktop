@@ -1,14 +1,14 @@
-package model;
+package utils;
 
-import messages.MessageBase;
+import message.MessageReceiveBase;
 
-public class FactoryClientMessage {
+public class FactoryReceiveMessage {
     
-    public static MessageBase getClientMessage(String mensagem) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+    public static MessageReceiveBase getClientMessage(String mensagem) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
         String[] infos = mensagem.split(";");
         String identificador = infos[0];
         
-        MessageBase message = (MessageBase) Class.forName("messages.Message" + identificador.substring(0, 1).toUpperCase() + identificador.substring(1)).newInstance();
+        MessageReceiveBase message = (MessageReceiveBase) Class.forName("message.Message" + identificador.substring(0, 1).toUpperCase() + identificador.substring(1)).newInstance();
         message.setInfos(infos);
         return message;
     }

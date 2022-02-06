@@ -36,7 +36,7 @@ public class ControllerLoginFinal extends ControllerBase<ViewLoginFinal> {
     private void addActionListenerVoltar(ViewLoginFinal view) {
         view.getBtnVoltar().addActionListener((e) -> {
             new ControllerLoginInicial(this.usuario.getUsername()).abreTela();
-            this.getView().setVisible(false);
+            this.getView().dispose();
         });
     }
 
@@ -48,7 +48,7 @@ public class ControllerLoginFinal extends ControllerBase<ViewLoginFinal> {
             
             if (this.doLogin(this.usuario)) {
                 ControllerIndex.getInstance().setUsuarioLogado(this.usuario).abreTela();
-                this.getView().setVisible(false);
+                this.getView().dispose();
             }
             else {
                 JOptionPane.showMessageDialog(this.getView(), "Senha incorreta", "Informação", JOptionPane.INFORMATION_MESSAGE);

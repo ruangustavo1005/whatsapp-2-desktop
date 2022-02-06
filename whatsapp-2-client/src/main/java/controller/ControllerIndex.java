@@ -1,14 +1,19 @@
 package controller;
 
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import message.MessageGetConversas;
 import model.Conversa;
 import model.Usuario;
 import utils.Connection;
+import view.TableModelConversa;
 import view.ViewIndex;
 
 /**
@@ -26,7 +31,14 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
     
     @Override
     protected ViewIndex getInstanceView() {
-        return new ViewIndex(this.getConversas());
+        return new ViewIndex();
+    }
+
+    @Override
+    public void abreTela() {
+        this.getView().getTableModel().clear();
+        this.getConversas().forEach(conversa -> this.getView().getTableModel().addConversa(conversa));
+        super.abreTela();
     }
 
     public static synchronized ControllerIndex getInstance() {
@@ -41,13 +53,14 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
         this.addActionListenerLogout(view);
         this.addActionListenerNewConversaPrivada(view);
         this.addActionListenerNewConversaGrupo(view);
+        this.addActionListenerAbrirConversa(view);
     }
     
     private void addActionListenerLogout(ViewIndex view) {
         view.getBtnLogout().addActionListener((e) -> {
             this.setUsuarioLogado(null);
             new ControllerLoginInicial().abreTela();
-            this.getView().setVisible(false);
+            this.getView().dispose();
         });
     }
     
@@ -58,12 +71,43 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
         });
     }
     
-    
     private void addActionListenerNewConversaGrupo(ViewIndex view) {
         view.getBtnNewConversaGrupo().addActionListener((e) -> {
             new ControllerCadastroConversaGrupo().abreTela();
-            this.getView().setVisible(false);
+            this.getView().dispose();
         });
+    }
+    
+    
+    private void addActionListenerAbrirConversa(ViewIndex view) {
+        view.getBtnAbrirConversa().addActionListener((e) -> {
+            JTable table = this.getView().getTable();
+            
+            if (table.getSelectedRowCount() == 1) {
+                TableModelConversa tableModelConversa = this.getView().getTableModel();
+                Conversa conversaSelecionada = tableModelConversa.getConversas().get(table.getSelectedRow());
+                
+                abreConversa(conversaSelecionada);
+            }
+        });
+        
+        view.getTable().addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent mouseEvent) {
+                JTable table = (JTable) mouseEvent.getSource();
+                Point point = mouseEvent.getPoint();
+                int row = table.rowAtPoint(point);
+                if (mouseEvent.getClickCount() == 2 && table.getSelectedRow() != -1) {
+                    Conversa conversa = ControllerIndex.getInstance().getView().getTableModel().getConversas().get(row);
+                    abreConversa(conversa);
+                }
+            }
+        });
+    }
+    
+    private static void abreConversa(Conversa conversa) {
+        ControllerIndex.getInstance().getView().dispose();
+        ControllerConversa.getInstance().setConversa(conversa).abreTela();
     }
     
     private ArrayList<Conversa> getConversas() {
@@ -78,7 +122,7 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
                 byte[] dadosBrutos = new byte[1024];
                 String response = new String(dadosBrutos, 0, inputStream.read(dadosBrutos));
                 
-                if (!response.isEmpty()) {
+                if (!response.equals("0")) {
                     String[] responseLines = response.split("\n");
                     
                     for (String line : responseLines) {
@@ -107,7 +151,9 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
 
     public ControllerIndex setUsuarioLogado(Usuario usuarioLogado) {
         this.usuarioLogado = usuarioLogado;
-        this.getView().getLabelUsuarioLogado().setText(usuarioLogado.getNome());
+        if (usuarioLogado != null) {
+            this.getView().getLabelUsuarioLogado().setText(usuarioLogado.getNome());
+        }
         return this;
     }
 

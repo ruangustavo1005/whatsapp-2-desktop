@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * @author Ruan
+ * @author Leonardo & Ruan
  */
 public class ConfigUtils {
 
