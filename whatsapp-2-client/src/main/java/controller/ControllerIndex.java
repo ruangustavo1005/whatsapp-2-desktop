@@ -16,7 +16,6 @@ import model.Conversa;
 import model.Usuario;
 import utils.Connection;
 import view.TableModelConversa;
-import view.ViewConversa;
 import view.ViewIndex;
 
 /**
@@ -40,9 +39,9 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
 
     @Override
     public void abreTela() {
-        if (this.controllerListenNewMessages != null) {
+        if (this.controllerListenNewMessages == null) {
             try {
-                this.controllerListenNewMessages = new ControllerListenNewMessages(ControllerIndex.getInstance().getUsuarioLogado().getPorta());
+                this.controllerListenNewMessages = new ControllerListenNewMessages(this.getUsuarioLogado().getPorta());
                 new Thread(this.controllerListenNewMessages).start();
             } catch (IOException ex) {
                 JOptionPane.showMessageDialog(null, "Não foi possível iniciar o notificador de mensagens novas: ".concat(ex.getMessage()), "Erro", JOptionPane.ERROR_MESSAGE);
