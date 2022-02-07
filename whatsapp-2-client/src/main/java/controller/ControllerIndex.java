@@ -5,6 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.BindException;
 import java.net.Socket;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -42,12 +43,13 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
                 this.controllerListenNewMessages = new ControllerListenNewMessages(this.getUsuarioLogado().getPorta());
                 this.controllerListenNewMessages.start();
             }
-        } catch (IOException ex) {
+        }
+        catch (BindException ex) {
+            JOptionPane.showMessageDialog(null, "A porta que foi configurada para este usuário já está em uso na sua máquina", "Erro", JOptionPane.ERROR_MESSAGE);
+        }
+        catch (IOException ex) {
             JOptionPane.showMessageDialog(null, "Não foi possível iniciar o notificador de mensagens novas: ".concat(ex.getMessage()), "Erro", JOptionPane.ERROR_MESSAGE);
         }
-        
-        this.getView().getTableModel().clear();
-        this.getConversas().forEach(conversa -> this.getView().getTableModel().addConversa(conversa));
         super.abreTela();
     }
 
@@ -107,6 +109,7 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
     
     private static void abreConversa(Conversa conversa) {
         ControllerIndex.getInstance().getView().dispose();
+        ControllerIndex.getInstance().getView().getTableModel().resetNotificacoesConversa(conversa);
         ControllerConversa.getInstance().setConversa(conversa).abreTela();
     }
     
@@ -153,6 +156,8 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
         this.usuarioLogado = usuarioLogado;
         if (usuarioLogado != null) {
             this.getView().getLabelUsuarioLogado().setText(usuarioLogado.getNome());
+            this.getView().getTableModel().clear();
+            this.getConversas().forEach(conversa -> this.getView().getTableModel().addConversa(conversa));
         }
         return this;
     }

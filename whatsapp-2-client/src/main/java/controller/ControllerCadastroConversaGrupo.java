@@ -85,7 +85,7 @@ public class ControllerCadastroConversaGrupo extends ControllerBase<ViewCadastro
                     Conversa conversa = this.newConversaGrupo(titulo, usuarios);
 
                     if (conversa != null) {
-                        ControllerIndex.getInstance().getView().dispose();
+                        ControllerIndex.getInstance().getView().getTableModel().addConversa(conversa);
                         ControllerConversa.getInstance().setConversa(conversa).abreTela();
                         this.getView().dispose();
                     }

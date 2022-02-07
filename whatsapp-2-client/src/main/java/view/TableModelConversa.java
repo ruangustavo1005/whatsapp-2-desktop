@@ -31,15 +31,28 @@ public class TableModelConversa extends AbstractTableModel {
     }
     
     public void addNotificacaoMensagemNova(Conversa conversa) {
-        int index = IntStream.range(0, this.getRowCount())
-                .filter(i -> this.getConversas().get(i).getId().equals(conversa.getId()))
-                .findFirst()
-                .getAsInt();
+        int index = this.getIndexOf(conversa);
 
         if (index >= 0) {
             this.getConversas().get(index).setMensagensNovas(this.getConversas().get(index).getMensagensNovas() + 1);
             this.fireTableRowsUpdated(index, index);
         }
+    }
+    
+    public void resetNotificacoesConversa(Conversa conversa) {
+        int index = this.getIndexOf(conversa);
+
+        if (index >= 0) {
+            this.getConversas().get(index).setMensagensNovas(0);
+            this.fireTableRowsUpdated(index, index);
+        }
+    }
+    
+    private int getIndexOf(Conversa conversa) {
+        return IntStream.range(0, this.getRowCount())
+                .filter(i -> this.getConversas().get(i).getId().equals(conversa.getId()))
+                .findFirst()
+                .getAsInt();
     }
     
     public void clear() {

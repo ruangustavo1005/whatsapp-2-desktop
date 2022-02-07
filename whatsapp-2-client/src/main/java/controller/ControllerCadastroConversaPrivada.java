@@ -44,7 +44,7 @@ public class ControllerCadastroConversaPrivada extends ControllerBase<ViewCadast
                 Conversa conversa = this.newConversaPrivada(usuario);
                 
                 if (conversa != null) {
-                    ControllerIndex.getInstance().getView().dispose();
+                    ControllerIndex.getInstance().getView().getTableModel().addConversa(conversa);
                     ControllerConversa.getInstance().setConversa(conversa).abreTela();
                     this.getView().dispose();
                 }
