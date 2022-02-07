@@ -35,26 +35,14 @@ public class ControllerMessageNewConversaGrupo extends ControllerMessageBase<Mes
                     }
                 });
                 usuarios.add(usuarioCriador);
-                if(!this.hasSameConversa(usuarios)) {
-                    ConversaGrupo conversaGrupo = new ConversaGrupo(uuidAsString, this.getMessageBase().getTitulo(), usuarios, 0);
-                    dao.getConversas().put(uuidAsString, conversaGrupo);
-                    this.sendNotificacaoConversa(conversaGrupo, usuarioCriador.getUsername());
-                    this.write(uuidAsString);
-                }
+                ConversaGrupo conversaGrupo = new ConversaGrupo(uuidAsString, this.getMessageBase().getTitulo(), usuarios, 0);
+                dao.getConversas().put(uuidAsString, conversaGrupo);
+                this.sendNotificacaoConversa(conversaGrupo, usuarioCriador.getUsername());
+                this.write(uuidAsString);
             }
         } catch (IOException ex) {
             Logger.getLogger(ControllerMessageNewConversaGrupo.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }
-    
-    protected boolean hasSameConversa(List<Usuario> usuarios) {
-        for(Conversa conversa : Dao.getInstance().getConversas().values()) {
-            List<Usuario> usuariosConversa = conversa.getUsuariosNotificar();
-            if (usuariosConversa.containsAll(usuarios) && usuarios.containsAll(usuariosConversa) && usuarios.size() == usuariosConversa.size()) {
-                return true;
-            }
-        }
-        return false;
     }
     
     protected void sendNotificacaoConversa(ConversaGrupo conversaGrupo, String usuarioCriador) throws IOException {
