@@ -17,9 +17,6 @@ public class Dao {
     
     private Dao() {
         this.usuarios = new HashMap<>();
-        this.usuarios.put("leo", new Usuario("leo", "202cb962ac59075b964b07152d234b70", "leozin", "177.104.4.159", 12345));
-        this.usuarios.put("ruan", new Usuario("ruan", "202cb962ac59075b964b07152d234b70", "ruanzada", "177.125.17.92", 12345));
-//        this.usuarios.put("fernando", new Usuario("fernando", "202cb962ac59075b964b07152d234b70", "fernando", null, 12345));
         this.conversas = new HashMap<>();
     }
     
