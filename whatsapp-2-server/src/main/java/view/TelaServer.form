@@ -33,9 +33,7 @@
                       <Component id="txtPort" min="-2" pref="77" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Component id="btnStart" min="-2" pref="94" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnStop" min="-2" pref="94" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="333" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="433" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Component id="jScrollPane1" max="32767" attributes="0"/>
@@ -58,7 +56,6 @@
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtPort" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnStart" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnStop" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" pref="596" max="32767" attributes="0"/>
@@ -100,11 +97,6 @@
     <Component class="javax.swing.JButton" name="btnClear">
       <Properties>
         <Property name="text" type="java.lang.String" value="Limpar"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnStop">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Stop"/>
       </Properties>
     </Component>
   </SubComponents>

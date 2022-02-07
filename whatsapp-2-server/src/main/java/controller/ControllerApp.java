@@ -34,7 +34,6 @@ public class ControllerApp {
     
     private void addActionListeners() {
         this.addActionStart();
-        this.addActionStop();
         this.addActionClearLogs();
     }
     
@@ -49,12 +48,6 @@ public class ControllerApp {
             } catch (Exception ex) {
                 Logger.getLogger(TelaServer.class.getName()).log(Level.SEVERE, null, ex);
             }
-        });
-    }
-    
-    private void addActionStop() {
-        this.getInstanceView().getStopButton().addActionListener((e) -> {
-            
         });
     }
     
