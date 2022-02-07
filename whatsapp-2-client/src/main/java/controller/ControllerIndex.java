@@ -79,6 +79,7 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
     private void addActionListenerNewConversaPrivada(ViewIndex view) {
         view.getBtnNewConversaPrivada().addActionListener((e) -> {
             new ControllerCadastroConversaPrivada().abreTela();
+            this.getView().dispose();
         });
     }
     
@@ -90,17 +91,6 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
     }
     
     private void addActionListenerAbrirConversa(ViewIndex view) {
-        view.getBtnAbrirConversa().addActionListener((e) -> {
-            JTable table = this.getView().getTable();
-            
-            if (table.getSelectedRowCount() == 1) {
-                TableModelConversa tableModelConversa = this.getView().getTableModel();
-                Conversa conversaSelecionada = tableModelConversa.getConversas().get(table.getSelectedRow());
-                
-                abreConversa(conversaSelecionada);
-            }
-        });
-        
         view.getTable().addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent mouseEvent) {

@@ -40,11 +40,11 @@ public class ViewIndex extends ViewBase {
         btnLogout = new javax.swing.JButton();
         btnNewConversaPrivada = new javax.swing.JButton();
         btnNewConversaGrupo = new javax.swing.JButton();
-        btnAbrirConversa = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("W2D");
+        setResizable(false);
 
         table.setModel(this.tableModel);
         jScrollPane1.setViewportView(table);
@@ -54,8 +54,6 @@ public class ViewIndex extends ViewBase {
         btnNewConversaPrivada.setText("Nova conversa privada");
 
         btnNewConversaGrupo.setText("Nova conversa em grupo");
-
-        btnAbrirConversa.setText("Abrir Conversa");
 
         jLabel1.setText("Logado como:");
 
@@ -71,7 +69,6 @@ public class ViewIndex extends ViewBase {
                     .addComponent(btnLogout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNewConversaPrivada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnNewConversaGrupo, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
-                    .addComponent(btnAbrirConversa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -85,8 +82,6 @@ public class ViewIndex extends ViewBase {
                 .addComponent(btnNewConversaPrivada)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnNewConversaGrupo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnAbrirConversa)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -102,10 +97,6 @@ public class ViewIndex extends ViewBase {
 
     public TableModelConversa getTableModel() {
         return tableModel;
-    }
-
-    public JButton getBtnAbrirConversa() {
-        return btnAbrirConversa;
     }
 
     public JButton getBtnLogout() {
@@ -129,7 +120,6 @@ public class ViewIndex extends ViewBase {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAbrirConversa;
     private javax.swing.JButton btnLogout;
     private javax.swing.JButton btnNewConversaGrupo;
     private javax.swing.JButton btnNewConversaPrivada;

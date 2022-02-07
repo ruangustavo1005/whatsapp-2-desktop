@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
@@ -32,6 +34,7 @@ public class ControllerCadastroConversaGrupo extends ControllerBase<ViewCadastro
         this.addActionListenerAdicionar(view);
         this.addActionListenerRemover(view);
         this.addActionListenerIniciarConversa(view);
+        this.addActionListenersWindow(view);
     }
 
     private void addSelectionListenerTableUsuario(ViewCadastroConversaGrupo view) {
@@ -91,6 +94,34 @@ public class ControllerCadastroConversaGrupo extends ControllerBase<ViewCadastro
         });
     }
     
+    private void addActionListenersWindow(ViewCadastroConversaGrupo view) {
+        view.addWindowListener(new WindowListener() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                ControllerIndex.getInstance().abreTela();
+                view.dispose();
+            }
+
+            @Override
+            public void windowOpened(WindowEvent e) {}
+
+            @Override
+            public void windowClosed(WindowEvent e) {}
+
+            @Override
+            public void windowIconified(WindowEvent e) {}
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {}
+
+            @Override
+            public void windowActivated(WindowEvent e) {}
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {}
+        });
+    }
+
     private ArrayList<Usuario> getUsuarios() {
         ArrayList<Usuario> usuarios = new ArrayList<>();
         
