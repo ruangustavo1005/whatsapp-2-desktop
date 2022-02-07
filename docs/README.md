@@ -4,6 +4,7 @@
 
 * Singleton
 * MVC
+* Factory
 * Strategy
 
 ## Requisitos
