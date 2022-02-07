@@ -1,6 +1,7 @@
 package controller;
 
 import message.MessageSendNotificacaoMensagem;
+import model.Conversa;
 
 /**
  * @author Leonardo & Ruan
@@ -13,6 +14,15 @@ public class ControllerMessageSendNotificacaoMensagem extends ControllerMessageR
         if (controllerConversa.getView().isVisible()) {
             if (controllerConversa.getConversa().getId().equals(this.getMessageBase().getConversa())) {
                 controllerConversa.appendMensagem(this.getMessageBase().getMensagem());
+            }
+        }
+        else {
+            ControllerIndex controllerIndex = ControllerIndex.getInstance();
+            if (controllerIndex.getView().isVisible()) {
+                controllerIndex.getView()
+                        .getTableModel()
+                        .addNotificacaoMensagemNova(new Conversa()
+                                .setId(this.getMessageBase().getConversa()));
             }
         }
     }

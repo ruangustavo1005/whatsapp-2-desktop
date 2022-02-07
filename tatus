@@ -1,0 +1,111 @@
+warning: LF will be replaced by CRLF in whatsapp-2-client/src/main/java/controller/ControllerMessageSendNotificacaoMensagem.java.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in whatsapp-2-client/src/main/java/view/TableModelConversa.java.
+The file will have its original line endings in your working directory
+[1mdiff --git a/whatsapp-2-client/src/main/java/controller/ControllerMessageSendNotificacaoMensagem.java b/whatsapp-2-client/src/main/java/controller/ControllerMessageSendNotificacaoMensagem.java[m
+[1mindex 1af6202..179e432 100644[m
+[1m--- a/whatsapp-2-client/src/main/java/controller/ControllerMessageSendNotificacaoMensagem.java[m
+[1m+++ b/whatsapp-2-client/src/main/java/controller/ControllerMessageSendNotificacaoMensagem.java[m
+[36m@@ -1,6 +1,7 @@[m
+ package controller;[m
+ [m
+ import message.MessageSendNotificacaoMensagem;[m
+[32m+[m[32mimport model.Conversa;[m
+ [m
+ /**[m
+  * @author Leonardo & Ruan[m
+[36m@@ -15,6 +16,15 @@[m [mpublic class ControllerMessageSendNotificacaoMensagem extends ControllerMessageR[m
+                 controllerConversa.appendMensagem(this.getMessageBase().getMensagem());[m
+             }[m
+         }[m
+[32m+[m[32m        else {[m
+[32m+[m[32m            ControllerIndex controllerIndex = ControllerIndex.getInstance();[m
+[32m+[m[32m            if (controllerIndex.getView().isVisible()) {[m
+[32m+[m[32m                controllerIndex.getView()[m
+[32m+[m[32m                        .getTableModel()[m
+[32m+[m[32m                        .addNotificacaoMensagemNova(new Conversa()[m
+[32m+[m[32m                                .setId(this.getMessageBase().getConversa()));[m
+[32m+[m[32m            }[m
+[32m+[m[32m        }[m
+     }[m
+ [m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/whatsapp-2-client/src/main/java/model/Conversa.java b/whatsapp-2-client/src/main/java/model/Conversa.java[m
+[1mindex eff7303..9ddc774 100644[m
+[1m--- a/whatsapp-2-client/src/main/java/model/Conversa.java[m
+[1m+++ b/whatsapp-2-client/src/main/java/model/Conversa.java[m
+[36m@@ -11,6 +11,7 @@[m [mpublic class Conversa {[m
+     private String id;[m
+     private String titulo;[m
+     private List<Mensagem> mensagens;[m
+[32m+[m[32m    private int mensagensNovas;[m
+     [m
+     public String getId() {[m
+         return this.id;[m
+[36m@@ -46,5 +47,14 @@[m [mpublic class Conversa {[m
+         this.mensagens.add(mensagem);[m
+         return this;[m
+     }[m
+[32m+[m
+[32m+[m[32m    public int getMensagensNovas() {[m
+[32m+[m[32m        return mensagensNovas;[m
+[32m+[m[32m    }[m
+[32m+[m
+[32m+[m[32m    public Conversa setMensagensNovas(int mensagensNovas) {[m
+[32m+[m[32m        this.mensagensNovas = mensagensNovas;[m
+[32m+[m[32m        return this;[m
+[32m+[m[32m    }[m
+     [m
+ }[m
+\ No newline at end of file[m
+[1mdiff --git a/whatsapp-2-client/src/main/java/view/TableModelConversa.java b/whatsapp-2-client/src/main/java/view/TableModelConversa.java[m
+[1mindex 8d0659f..40e8265 100644[m
+[1m--- a/whatsapp-2-client/src/main/java/view/TableModelConversa.java[m
+[1m+++ b/whatsapp-2-client/src/main/java/view/TableModelConversa.java[m
+[36m@@ -30,6 +30,18 @@[m [mpublic class TableModelConversa extends AbstractTableModel {[m
+         this.fireTableRowsInserted(i, i);[m
+     }[m
+     [m
+[32m+[m[32m    public void addNotificacaoMensagemNova(Conversa conversa) {[m
+[32m+[m[32m        int index = IntStream.range(0, this.getRowCount())[m
+[32m+[m[32m                .filter(i -> this.getConversas().get(i).getId().equals(conversa.getId()))[m
+[32m+[m[32m                .findFirst()[m
+[32m+[m[32m                .getAsInt();[m
+[32m+[m
+[32m+[m[32m        if (index >= 0) {[m
+[32m+[m[32m            this.getConversas().get(index).setMensagensNovas(this.getConversas().get(index).getMensagensNovas() + 1);[m
+[32m+[m[32m            this.fireTableRowsUpdated(index, index);[m
+[32m+[m[32m        }[m
+[32m+[m[32m    }[m
+[32m+[m[41m    [m
+     public void clear() {[m
+         int i = this.getConversas().size();[m
+         if (i > 0) {[m
+[36m@@ -45,18 +57,24 @@[m [mpublic class TableModelConversa extends AbstractTableModel {[m
+ [m
+     @Override[m
+     public int getColumnCount() {[m
+[31m-        return 1;[m
+[32m+[m[32m        return 2;[m
+     }[m
+ [m
+     @Override[m
+     public Object getValueAt(int rowIndex, int columnIndex) {[m
+[31m-        return this.getConversas().get(rowIndex).getTitulo();[m
+[32m+[m[32m        Conversa conversa = this.getConversas().get(rowIndex);[m
+[32m+[m[32m        switch (columnIndex) {[m
+[32m+[m[32m            case 0: return conversa.getTitulo();[m
+[32m+[m[32m            case 1: return conversa.getMensagensNovas() > 0 ? conversa.getMensagensNovas() : "";[m
+[32m+[m[32m            default: return null;[m
+[32m+[m[32m        }[m
+     }[m
+ [m
+     @Override[m
+     public String getColumnName(int column) {[m
+         switch (column) {[m
+             case 0: return "Conversa";[m
+[32m+[m[32m            case 1: return "Notificações";[m
+             default: return null;[m
+         }[m
+     }[m
