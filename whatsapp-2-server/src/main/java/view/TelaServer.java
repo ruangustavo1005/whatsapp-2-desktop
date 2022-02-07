@@ -9,6 +9,7 @@ public class TelaServer extends javax.swing.JFrame {
     private TelaServer() {
         initComponents();
         this.txtLogs.setEditable(false);
+        this.setResizable(false);
     }
 
     public static TelaServer getInstance() {

@@ -25,7 +25,7 @@ public class ControllerMessageGetConversas extends ControllerMessageBase<Message
                 for (Conversa conversa : dao.getConversas().values()) {
                     String nome;
                     if (conversa instanceof ConversaPrivada) {
-                        nome = usuario.getUsername().equals(((ConversaPrivada) conversa).getUsuario1().getUsername()) ? ((ConversaPrivada) conversa).getUsuario2().getUsername() : ((ConversaPrivada) conversa).getUsuario1().getUsername();
+                        nome = usuario.getUsername().equals(((ConversaPrivada) conversa).getUsuario1().getUsername()) ? ((ConversaPrivada) conversa).getUsuario2().getNome() : ((ConversaPrivada) conversa).getUsuario1().getNome();
                     } else {
                         nome = ((ConversaGrupo) conversa).getTitulo();
                     }

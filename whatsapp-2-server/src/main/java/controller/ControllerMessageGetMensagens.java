@@ -21,7 +21,7 @@ public class ControllerMessageGetMensagens extends ControllerMessageBase<Message
             String retorno = "";
             if(conversa != null) {
                 for(Mensagem mensagem : conversa.getMensagens()) {
-                    retorno += (mensagem.toString() + "\n");
+                    retorno += (mensagem.toString() + ";\n");
                 }
                 if(!retorno.isEmpty()) {
                     this.write(retorno);

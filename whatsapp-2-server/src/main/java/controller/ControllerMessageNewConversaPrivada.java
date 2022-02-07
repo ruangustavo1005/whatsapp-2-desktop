@@ -2,6 +2,7 @@ package controller;
 
 import java.io.IOException;
 import java.util.UUID;
+import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import messages.MessageNewConversaPrivada;
@@ -9,6 +10,7 @@ import model.Conversa;
 import model.ConversaPrivada;
 import model.Dao;
 import model.Usuario;
+import utils.SocketConnection;
 
 /**
  * @author Leonardo e Ruan
@@ -27,6 +29,7 @@ public class ControllerMessageNewConversaPrivada extends ControllerMessageBase<M
                     String uuidAsString = uuid.toString();
                     ConversaPrivada conversaPrivada = new ConversaPrivada(uuidAsString, usuario1, usuario2, 0);
                     Dao.getInstance().getConversas().put(uuidAsString, conversaPrivada);
+                    this.sendNotificacaoConversa(conversaPrivada, usuario2.getUsername());
                     this.write(uuidAsString);
                 } else {
                     this.write("0");
@@ -49,6 +52,18 @@ public class ControllerMessageNewConversaPrivada extends ControllerMessageBase<M
             }
         }
         return false;
+    }
+    
+    private void sendNotificacaoConversa(ConversaPrivada conversa, String usuarioNaoCriador) throws IOException {
+        for(Usuario usuario : conversa.getUsuariosNotificar()) {
+            if(usuario.getUsername().equals(usuarioNaoCriador)) {
+                try (Socket socket = SocketConnection.createSocketInstance(usuario.getIp(), usuario.getPorta())) {
+                    String nome = usuario.getUsername().equals(((ConversaPrivada) conversa).getUsuario1().getUsername()) ? ((ConversaPrivada) conversa).getUsuario2().getNome() : ((ConversaPrivada) conversa).getUsuario1().getNome();
+                    String retorno = "sendNotificacaoNewConversa;" + conversa.getId() + ";" + nome;
+                    socket.getOutputStream().write(retorno.getBytes());
+                }
+            }
+        }
     }
     
 }
