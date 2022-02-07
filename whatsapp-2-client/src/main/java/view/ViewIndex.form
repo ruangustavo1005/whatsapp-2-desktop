@@ -4,6 +4,7 @@
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
     <Property name="title" type="java.lang.String" value="W2D"/>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -32,7 +33,6 @@
                   <Component id="btnLogout" alignment="1" max="32767" attributes="0"/>
                   <Component id="btnNewConversaPrivada" alignment="0" max="32767" attributes="0"/>
                   <Component id="btnNewConversaGrupo" alignment="0" pref="185" max="32767" attributes="0"/>
-                  <Component id="btnAbrirConversa" alignment="0" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -50,8 +50,6 @@
               <Component id="btnNewConversaPrivada" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="btnNewConversaGrupo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="btnAbrirConversa" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -101,11 +99,6 @@
     <Component class="javax.swing.JButton" name="btnNewConversaGrupo">
       <Properties>
         <Property name="text" type="java.lang.String" value="Nova conversa em grupo"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnAbrirConversa">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Abrir Conversa"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">

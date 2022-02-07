@@ -1,5 +1,7 @@
 package controller;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
@@ -26,6 +28,7 @@ public class ControllerCadastroConversaPrivada extends ControllerBase<ViewCadast
     @Override
     protected void addActionListeners(ViewCadastroConversaPrivada view) {
         this.addActionListenerIniciarConversa(view);
+        this.addActionListenersWindow(view);
     }
     
     private void addActionListenerIniciarConversa(ViewCadastroConversaPrivada view) {
@@ -49,6 +52,34 @@ public class ControllerCadastroConversaPrivada extends ControllerBase<ViewCadast
         });
     }
     
+    private void addActionListenersWindow(ViewCadastroConversaPrivada view) {
+        view.addWindowListener(new WindowListener() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                ControllerIndex.getInstance().abreTela();
+                view.dispose();
+            }
+
+            @Override
+            public void windowOpened(WindowEvent e) {}
+
+            @Override
+            public void windowClosed(WindowEvent e) {}
+
+            @Override
+            public void windowIconified(WindowEvent e) {}
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {}
+
+            @Override
+            public void windowActivated(WindowEvent e) {}
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {}
+        });
+    }
+
     private Conversa newConversaPrivada(Usuario usuario) {
         Conversa conversa = null;
         
