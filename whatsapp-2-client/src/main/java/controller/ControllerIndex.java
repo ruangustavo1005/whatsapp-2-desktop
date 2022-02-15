@@ -14,7 +14,6 @@ import message.MessageGetConversas;
 import model.Conversa;
 import model.Usuario;
 import utils.Connection;
-import view.TableModelConversa;
 import view.ViewIndex;
 
 /**
@@ -133,7 +132,8 @@ public class ControllerIndex extends ControllerBase<ViewIndex> {
                         
                         conversas.add(new Conversa()
                                 .setId(linePieces[0])
-                                .setTitulo(linePieces[1]));
+                                .setTitulo(linePieces[1])
+                                .setMensagensNovas(Integer.parseInt(linePieces[2])));
                     }
                 }
             }
