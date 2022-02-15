@@ -10,9 +10,7 @@ public class ControllerMessageSendNotificacaoNewConversa extends ControllerMessa
     @Override
     public void execute() {
         ControllerIndex controllerIndex = ControllerIndex.getInstance();
-        if (controllerIndex.getView().isVisible()) {
-            controllerIndex.getView().getTableModel().addConversa(this.getMessageBase().getConversa());
-        }
+        controllerIndex.getView().getTableModel().addConversa(this.getMessageBase().getConversa());
     }
 
 }

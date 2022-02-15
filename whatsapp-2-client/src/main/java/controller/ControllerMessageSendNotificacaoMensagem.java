@@ -18,12 +18,10 @@ public class ControllerMessageSendNotificacaoMensagem extends ControllerMessageR
         }
         else {
             ControllerIndex controllerIndex = ControllerIndex.getInstance();
-            if (controllerIndex.getView().isVisible()) {
-                controllerIndex.getView()
-                        .getTableModel()
-                        .addNotificacaoMensagemNova(new Conversa()
-                                .setId(this.getMessageBase().getConversa()));
-            }
+            controllerIndex.getView()
+                    .getTableModel()
+                    .addNotificacaoMensagemNova(new Conversa()
+                            .setId(this.getMessageBase().getConversa()));
         }
     }
 
