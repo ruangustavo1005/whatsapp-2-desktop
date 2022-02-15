@@ -31,8 +31,8 @@ public class ControllerMessageGetConversas extends ControllerMessageBase<Message
                     }
                     for (Usuario user : conversa.getUsuariosNotificar()) {
                         if (user.getUsername().equals(usuario.getUsername())) {
-                            int notificacoes = conversa.getNotificacoes().get(user.getUsername());
-                            retorno += (conversa.getId() + ";" + nome + ";" + notificacoes + "\n");
+                            Integer notificacoes = conversa.getNotificacoes().get(user.getUsername());
+                            retorno += (conversa.getId() + ";" + nome + ";" + (notificacoes == null ? 0 : notificacoes) + "\n");
                         }
                     }
                 }
