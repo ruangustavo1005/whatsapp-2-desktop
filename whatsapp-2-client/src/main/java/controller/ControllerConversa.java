@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import message.MessageGetMensagens;
@@ -128,7 +129,8 @@ public class ControllerConversa extends ControllerBase<ViewConversa>{
         try {
             try (Socket socket = (new Connection()).getInstanceSocket()) {
                 MessageGetMensagens messageGetMensagens = new MessageGetMensagens()
-                        .setConversa(conversa.getId());
+                        .setConversa(conversa.getId())
+                        .setUsuario(ControllerIndex.getInstance().getUsuarioLogado().getUsername());
                 socket.getOutputStream().write(messageGetMensagens.getMessageBytes());
                 
                 InputStream inputStream = socket.getInputStream();
@@ -136,16 +138,22 @@ public class ControllerConversa extends ControllerBase<ViewConversa>{
                 String response = new String(dadosBrutos, 0, inputStream.read(dadosBrutos));
                 
                 if (!response.equals("0")) {
-                    String[] responseLines = response.split(";\n");
+                    String[] responseLines = response.split("\r\n");
                     
                     for (String line : responseLines) {
                         String[] linePieces = line.split(";");
                         
                         mensagens.add(new Mensagem()
-                                .setDataHora(linePieces[2])
+                                .setDataHora(linePieces[1])
                                 .setUsuario(new Usuario()
                                         .setNome(linePieces[0]))
-                                .setMensagem(linePieces[1])
+                                .setMensagem(new ArrayList<>(Arrays.asList(linePieces))
+                                        .subList(2, linePieces.length)
+                                        .stream()
+                                        .reduce((String t, String u) -> {
+                                            return t == null ? u : (u == null ? t : t.concat(";").concat(u));
+                                        })
+                                        .get())
                                 .toString());
                     }
                 }
