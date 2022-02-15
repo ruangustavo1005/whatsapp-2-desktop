@@ -44,7 +44,7 @@ public class Mensagem {
 
     @Override
     public String toString() {
-        return this.usuario.getNome() + ";" + this.mensagem + ";" + DateUtils.dateHourToString(this.dataHora);
+        return this.usuario.getNome() + ";" + DateUtils.dateHourToString(this.dataHora) + ";" + this.mensagem;
     }
     
 }

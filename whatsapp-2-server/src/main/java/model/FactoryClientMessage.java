@@ -5,6 +5,9 @@ import messages.MessageBase;
 public class FactoryClientMessage {
     
     public static MessageBase getClientMessage(String mensagem) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
+        if(mensagem.endsWith(";")) {
+            mensagem = mensagem.concat(" ");
+        }
         String[] infos = mensagem.split(";");
         String identificador = infos[0];
         

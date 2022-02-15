@@ -20,8 +20,9 @@ public class ControllerMessageGetMensagens extends ControllerMessageBase<Message
             Conversa conversa = dao.getConversas().get(this.getMessageBase().getConversa());
             String retorno = "";
             if(conversa != null) {
+                conversa.getNotificacoes().remove(this.getMessageBase().getUsuario());
                 for(Mensagem mensagem : conversa.getMensagens()) {
-                    retorno += (mensagem.toString() + ";\n");
+                    retorno += (mensagem.toString() + "\r\n");
                 }
                 if(!retorno.isEmpty()) {
                     this.write(retorno);

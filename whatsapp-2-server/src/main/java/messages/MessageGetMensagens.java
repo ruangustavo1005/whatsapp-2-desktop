@@ -9,4 +9,8 @@ public class MessageGetMensagens extends MessageBase {
         return this.getInfo(1);
     }
     
+    public String getUsuario() {
+        return this.getInfo(2);
+    }
+    
 }

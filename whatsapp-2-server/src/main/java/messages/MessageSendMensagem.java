@@ -18,7 +18,11 @@ public class MessageSendMensagem extends MessageBase {
     }
     
     public String getConteudoMensagem() {
-        return this.getInfo(4);
+        String mensagem = this.getInfo(4);
+        for (int i = 5; i < this.getInfos().length; i++) {
+            mensagem = mensagem.concat(";" + this.getInfo(i));
+        }
+        return mensagem;
     }
     
 }
