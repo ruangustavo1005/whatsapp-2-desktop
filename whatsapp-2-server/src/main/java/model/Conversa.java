@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -11,11 +12,14 @@ abstract public class Conversa {
     private String id;
     private int qtdMensagensNaoLidas;
     private List<Mensagem> mensagens;
+    
+    private HashMap<String, Integer> notificacoes;
 
     public Conversa(String id, int qtdMensagensNaoLidas) {
         this.id = id;
         this.qtdMensagensNaoLidas = qtdMensagensNaoLidas;
         this.mensagens = new ArrayList<>();
+        this.notificacoes = new HashMap<>();
     }
     
     public abstract List<Usuario> getUsuariosNotificar();
@@ -42,6 +46,10 @@ abstract public class Conversa {
 
     public void setId(String id) {
         this.id = id;
+    }
+    
+    public HashMap<String, Integer> getNotificacoes() {
+        return this.notificacoes;
     }
 
 }

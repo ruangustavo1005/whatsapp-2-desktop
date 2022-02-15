@@ -41,6 +41,8 @@ public class ControllerMessageSendMensagem extends ControllerMessageBase<Message
     private void sendNotificacaoMensagem(Conversa conversa, Mensagem mensagem, Usuario usuarioLogado) throws IOException {
         for (Usuario usuario : conversa.getUsuariosNotificar()) {
             if(!usuario.getUsername().equals(usuarioLogado.getUsername())) {
+                int notificacoes = conversa.getNotificacoes().get(usuario.getUsername());
+                conversa.getNotificacoes().put(usuario.getUsername(), notificacoes + 1);
                 try (Socket socket = SocketConnection.createSocketInstance(usuario.getIp(), usuario.getPorta())) {
                     String retorno = "sendNotificacaoMensagem;" + conversa.getId() + ";" + mensagem.toString();
                     socket.getOutputStream().write(retorno.getBytes());
