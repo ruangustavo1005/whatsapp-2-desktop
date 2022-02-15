@@ -11,10 +11,9 @@ public class ControllerMessageSendNotificacaoMensagem extends ControllerMessageR
     @Override
     public void execute() {
         ControllerConversa controllerConversa = ControllerConversa.getInstance();
-        if (controllerConversa.getView().isVisible()) {
-            if (controllerConversa.getConversa().getId().equals(this.getMessageBase().getConversa())) {
-                controllerConversa.appendMensagem(this.getMessageBase().getMensagem());
-            }
+        if (controllerConversa.getView().isVisible()
+         && controllerConversa.getConversa().getId().equals(this.getMessageBase().getConversa())) {
+            controllerConversa.appendMensagem(this.getMessageBase().getMensagem());
         }
         else {
             ControllerIndex controllerIndex = ControllerIndex.getInstance();
